@@ -1,0 +1,52 @@
+# IFC Input Files
+*.ifc
+
+# TTL Output Files (RDF/Turtle)
+*.ttl
+
+# Excel Output Files
+*.xlsx
+
+# Validation Report Files
+*.pdf
+validation*.txt
+
+# Python Cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv
+
+# IDE/Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporary Files
+*.tmp
+*.temp
+*.log
+
+# Backup Files
+*.bak
+*.backup
+*~
+
+# Test Files (if you want to keep some examples, remove these lines)
+# test*.ifc
+# test*.ttl
+# test*.xlsx

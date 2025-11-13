@@ -10,10 +10,12 @@ This project implements an end-to-end workflow for converting IFC building model
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│ STAGE 1: IFC CONVERSION                                     │
-│ IFCtoLBD.py: Revit/IFC → RDF (BOT ontology)                 │
-│ Input: Project1.ifc                                         │
+│ STAGE 1: IFC CONVERSION + EXCEL EXPORT                      │
+│ IFCtoLBD.py: Revit/IFC → RDF + Excel (BOT ontology)         │
+│ Input: Project1.ifc (interactive file selection)           │
+│ Interactive: Select element types to include                │
 │ Output: Project1.ttl (157 triples, basic RDF)              │
+│         Project1.xlsx (parameter table with units)          │
 └─────────────────────────────────────────────────────────────┘
                             ↓
 ┌─────────────────────────────────────────────────────────────┐
@@ -37,11 +39,113 @@ This project implements an end-to-end workflow for converting IFC building model
 
 ## Core Files
 
-### 1. **IFCtoLBD.py** - IFC to RDF Converter
+### 1. **IFCtoLBD.py** - IFC to RDF Converter with Excel Export
 
-**Purpose:** Convert IFC building information models to RDF/Turtle using BOT (Building Topology) ontology
+**Purpose:** Convert IFC building information models to RDF/Turtle using BOT (Building Topology) ontology with parallel Excel export for human-readable parameter tables
 
 **Key Changes Made:**
+
+#### Enhancement 1: Excel Export Functionality (NEW)
+```python
+# ADDED: Parallel Excel export with parameters, values, and units
+import openpyxl
+from openpyxl.styles import Font, PatternFill, Alignment
+
+# Global list to store Excel data during conversion
+excel_data = []
+
+def generate_excel_output(excel_file):
+    """Generate Excel file with all parameters, values and units"""
+    # Creates structured spreadsheet with:
+    # - Element ID, Element Type, Element Name
+    # - Parameter, Value, Data Type, Unit
+    # - Styled headers, auto-adjusted columns
+```
+**Output:** Generates `.xlsx` file alongside `.ttl` with 7 columns:
+- Element ID (e.g., "element_84")
+- Element Type (e.g., "IfcWall")
+- Element Name (e.g., "Basic Wall")
+- Parameter (e.g., "Dpp_Dim_Height_Mm")
+- Value (e.g., "200.0")
+- Data Type (e.g., "double")
+- Unit (e.g., "mm")
+
+#### Enhancement 2: Smart Unit Extraction
+```python
+def extract_unit_from_name(param_name):
+    """Extract unit from parameter name using regex patterns"""
+    # Precise pattern matching with underscores
+    unit_patterns = [
+        (r'_Kgco₂?Eq', 'kgCO₂eq'),    # Carbon emissions
+        (r'_Kgso₂?Eq', 'kgSO₂eq'),    # Acidification
+        (r'_Mjkg', 'MJ/kg'),          # Energy per kg
+        (r'_Mpa', 'MPa'),             # Pressure
+        (r'_Eur', 'EUR'),             # Currency
+        (r'_Years', 'years'),         # Time
+        (r'_Mm(?:$|_)', 'mm'),        # Millimeters
+        # ... more patterns
+    ]
+```
+**Benefit:** Automatically extracts units from DPP parameter names without false matches
+
+#### Enhancement 3: Interactive File Selection GUI
+```python
+# ADDED: User-friendly file dialogs
+import tkinter as tk
+from tkinter import filedialog, simpledialog, messagebox
+
+# Select input IFC file
+fname = filedialog.askopenfilename(
+    title="Select IFC file to convert",
+    filetypes=[("IFC files", "*.ifc"), ("All files", "*.*")]
+)
+
+# Custom output name
+output_name = simpledialog.askstring(
+    "Output File Name",
+    "Enter the name for output files (without extension):",
+    initialvalue=default_name
+)
+
+# Select output directory
+output_dir = filedialog.askdirectory(
+    title="Select folder to save output files"
+)
+```
+**Benefit:** No code editing required, user chooses files and locations interactively
+
+#### Enhancement 4: Element Type Filtering (NEW)
+```python
+def select_element_types(model):
+    """Show dialog to select which element types to process"""
+    # Counts elements in model
+    counts = {
+        'Sites': len(list(model.by_type("IfcSite"))),
+        'Buildings': len(list(model.by_type("IfcBuilding"))),
+        'Storeys': len(list(model.by_type("IfcBuildingStorey"))),
+        'Spaces': len(list(model.by_type("IfcSpace"))),
+        'Elements': len(list(model.by_type("IfcElement"))),
+        'Interfaces': len(list(model.by_type("IfcRelSpaceBoundary"))),
+        'Zones': len(list(model.by_type("IfcZone")))
+    }
+    
+    # Interactive checkbox dialog
+    # User can select/deselect element types to include
+```
+**Benefit:** Process only needed element types, reduces file size and processing time
+
+#### Enhancement 5: Progress Feedback
+```python
+# Console output during processing
+if element_filters.get('sites', True):
+    output += writeSites(model,f)
+    print("  ✓ Processed Sites")
+
+if element_filters.get('elements', True):
+    output += writeElements(model,f)
+    print("  ✓ Processed Elements")
+```
+**Benefit:** Real-time progress updates for large IFC files
 
 #### Fix 1: Updated ifcopenshell API Import
 ```python
@@ -102,9 +206,9 @@ value_str = str(value).replace('\n', ', ').replace('\r', '').replace('"', '\\"')
 5. `writeZones()` function
 6. `writeElements()` function
 
-**Result:** Converts IFC properties to RDF triples with proper encoding and type handling
+**Result:** Converts IFC properties to RDF triples with proper encoding and type handling, plus parallel Excel export
 
-**Output Example:**
+**Output Example (TTL):**
 ```turtle
 @prefix bot: <https://w3id.org/bot#> .
 @prefix props: <https://w3id.org/props#> .
@@ -113,9 +217,25 @@ inst:element_84 a bot:Element ;
     props:hasCompressedGuid "2K5hKrflDAKRoqgARsTjZ8" ;
     props:Category "Walls" ;
     props:Family "Generic Wall" ;
-    props:Dpp_Dim_Height_Mm 200.0 ;
-    props:Dpp_Mat_Material "Concrete" .
+    props:Dpp_Dim_Height_Mm "200.0"^^xsd:double ;
+    props:Dpp_Mat_Material "Concrete"^^xsd:string .
 ```
+
+**Output Example (Excel):**
+| Element ID | Element Type | Element Name | Parameter | Value | Data Type | Unit |
+|------------|--------------|--------------|-----------|-------|-----------|------|
+| element_84 | IfcWall | Basic Wall | Category | Walls | string | |
+| element_84 | IfcWall | Basic Wall | Dpp_Dim_Height_Mm | 200.0 | double | mm |
+| element_84 | IfcWall | Basic Wall | Dpp_Mat_Material | Concrete | string | |
+| element_84 | IfcWall | Basic Wall | Dpp_End_Gwp_Kgco₂Eq | 15.5 | double | kgCO₂eq |
+
+**Interactive Workflow:**
+1. Dialog: Select IFC file
+2. Dialog: Choose element types to process (checkboxes with counts)
+3. Dialog: Enter output file name
+4. Dialog: Select output folder
+5. Processing: Real-time progress updates
+6. Output: `.ttl` + `.xlsx` files with success message
 
 ---
 
@@ -416,12 +536,36 @@ Results saved to:
 
 ## Complete Workflow Example
 
-### Step 1: Convert IFC to RDF
+### Step 1: Convert IFC to RDF + Excel
 ```bash
 python IFCtoLBD.py
-# Input: Project1.ifc (Revit model)
-# Output: Project1.ttl (157 triples, BOT ontology)
-# Fixes: API compatibility, UTF-8 encoding, boolean handling, string escaping
+
+# Interactive prompts:
+# 1. Select IFC file: [File browser opens]
+# 2. Select element types: [Checkbox dialog with counts]
+#    ☑ Sites (1 found)
+#    ☑ Buildings (1 found)
+#    ☑ Storeys (3 found)
+#    ☑ Spaces (12 found)
+#    ☑ Elements (145 found)
+#    ☐ Interfaces (0 found)  # Deselect if empty
+#    ☐ Zones (0 found)       # Deselect if empty
+# 3. Enter output name: "Project1" [default]
+# 4. Select output folder: [Folder browser opens]
+
+# Processing with progress:
+#   ✓ Processed Sites
+#   ✓ Processed Buildings
+#   ✓ Processed Storeys
+#   ✓ Processed Spaces
+#   ✓ Processed Elements
+
+# Output: 
+#   - Project1.ttl (157 triples, BOT ontology)
+#   - Project1.xlsx (parameter table with 7 columns)
+
+# Features: API compatibility, UTF-8 encoding, boolean handling, 
+#          string escaping, unit extraction, element filtering
 ```
 
 ### Step 2: Map to Multiple Ontologies
@@ -471,6 +615,7 @@ ifcopenshell >= 0.7.0   # IFC parsing with new API
 rdflib >= 6.0.0          # RDF graph manipulation
 pyshacl >= 0.20.0        # SHACL validation
 reportlab >= 3.6.0       # PDF generation
+openpyxl >= 3.1.0        # Excel file generation
 tkinter                  # GUI (included with Python)
 ```
 
@@ -531,7 +676,8 @@ Project Directory/
 │   ├── Project1.ifc                     # Revit/IFC model
 │   └── Project1.ttl                     # Basic RDF output
 │
-└── Output Files:
+├── Output Files:
+    ├── Project1.xlsx                    # Excel parameter table
     ├── Project1_mapped.ttl              # Multi-ontology mapped RDF
     ├── validation_results.pdf           # Formatted report
     └── validation_results.txt           # Raw text report
@@ -547,12 +693,16 @@ Project Directory/
 | **Character Support** | Limited encoding | UTF-8 explicit | ✓ International characters |
 | **Boolean Handling** | Incorrect type checking | Correct ordering | ✓ Accurate data types |
 | **String Safety** | Unescaped newlines | Proper escaping | ✓ Valid RDF syntax |
+| **Excel Export** | None | Parallel .xlsx with units | ✓ Human-readable tables |
+| **Unit Extraction** | None | Regex-based smart detection | ✓ Automatic unit identification |
+| **Element Filtering** | All elements | Interactive selection | ✓ Customizable output |
+| **File Selection** | Hard-coded paths | GUI dialogs | ✓ User-friendly |
+| **Output Naming** | Fixed names | Custom names | ✓ Organized reports |
+| **Progress Feedback** | Silent processing | Real-time updates | ✓ Better UX |
 | **Ontology Support** | Single namespace (DPP) | 9+ ontologies | ✓ Maximum interoperability |
 | **Property Mappings** | 1 per property | 2-3 per property | ✓ Semantic redundancy |
 | **OWL Equivalence** | None | 68 statements | ✓ Cross-ontology reasoning |
 | **Validation** | Single ontology | Multi-ontology paths | ✓ Flexible validation |
-| **File Selection** | Hard-coded paths | GUI dialogs | ✓ User-friendly |
-| **Output Naming** | Fixed names | Custom names | ✓ Organized reports |
 | **Batch Processing** | One file | Multiple files | ✓ ~70% faster |
 | **GUID Traceability** | URI only | URI + Compressed GUID | ✓ Element identification |
 | **Report Formats** | PDF only | PDF + TXT | ✓ Multiple use cases |
@@ -643,11 +793,27 @@ f = open(outputFile, "w", encoding='utf-8')
 ```
 
 ### Issue: "GUI dialog doesn't appear"
-**Solution:** Force window to front
+**Solution:** Force window to front (already implemented)
 ```python
 root.attributes('-topmost', True)
 root.lift()
 root.focus_force()
+```
+
+### Issue: "Wrong units in Excel export" (e.g., 'm' for carbon emissions)
+**Solution:** Unit extraction now uses precise regex patterns (fixed in v3.4)
+```python
+# Before: Substring matching caused false positives
+if 'm' in 'Embodiedcarbon':  # Wrong! Matches 'm' in middle
+
+# After: Precise regex with underscores
+if re.search(r'_M(?:$|_)', param_name):  # Correct! Only matches '_M' at boundaries
+```
+
+### Issue: "Excel file not generated"
+**Solution:** Ensure openpyxl is installed
+```bash
+pip install openpyxl
 ```
 
 ### Issue: "SHACL validation fails on multi-ontology data"
@@ -668,6 +834,15 @@ conforms, results_graph, results_text = validate(
 
 ---
 
+## Recent Enhancements Implemented
+
+1. ✅ **Excel Export** - Parallel spreadsheet generation with parameters, values, and units
+2. ✅ **Smart Unit Extraction** - Regex-based automatic unit detection from parameter names
+3. ✅ **Element Type Filtering** - Interactive checkbox dialog to select element types
+4. ✅ **Interactive File Selection** - GUI dialogs for input/output file management
+5. ✅ **Progress Feedback** - Real-time console updates during processing
+6. ✅ **Custom Output Naming** - User-defined output file names and locations
+
 ## Future Enhancements
 
 1. **Progress Bar** - Visual feedback for large batch validations
@@ -678,6 +853,8 @@ conforms, results_graph, results_text = validate(
 6. **Multi-Language Support** - Localized property names
 7. **REST API** - Web service for conversion and validation
 8. **Real-time Monitoring** - Dashboard for model quality metrics
+9. **Excel Import** - Load parameter values back into IFC/Revit from Excel
+10. **Batch IFC Processing** - Convert multiple IFC files in one run
 
 ---
 
@@ -706,6 +883,11 @@ conforms, results_graph, results_text = validate(
 | 2024-11 | 2.4 | Added batch validation support |
 | 2024-11 | 2.5 | Created SHACL_MultiOntology.ttl |
 | 2024-11 | 2.6 | Added GUID traceability and enhanced reporting |
+| 2025-11 | 3.0 | **Excel export with smart unit extraction** |
+| 2025-11 | 3.1 | **Interactive file selection dialogs** |
+| 2025-11 | 3.2 | **Element type filtering with counts** |
+| 2025-11 | 3.3 | **Progress feedback and improved UX** |
+| 2025-11 | 3.4 | **Fixed unit extraction precision (regex patterns)** |
 
 ---
 
@@ -714,9 +896,12 @@ conforms, results_graph, results_text = validate(
 This workflow transforms IFC building models into semantically rich, multi-ontology RDF data that is:
 
 ✅ **Interoperable** - Readable by DPP, Schema.org, QUDT, BOT, BPO, and other systems
+✅ **Human-Readable** - Parallel Excel export with parameters, values, and units
 ✅ **Validated** - Passes SHACL constraints with flexible alternative paths
 ✅ **Traceable** - Links validation errors to specific IFC elements via GUID
 ✅ **Extensible** - Easy to add new ontology mappings and properties
+✅ **Interactive** - User-friendly GUI dialogs for file selection and configuration
+✅ **Customizable** - Element type filtering to process only needed components
 ✅ **Automated** - One-command workflow from IFC to validated reports
 ✅ **Standards-Compliant** - Uses OWL, SHACL, RDF standards for semantic web
 
@@ -724,6 +909,8 @@ This workflow transforms IFC building models into semantically rich, multi-ontol
 **Total Triples:** 186 (IFC conversion: 157 + Multi-ontology mappings: +29)
 **Equivalence Statements:** 68 OWL equivalentProperty declarations
 **SHACL Coverage:** 24 properties with alternative path validation
+**Excel Export:** 7-column parameter table with automatic unit detection
+**Element Types:** 7 filterable categories (Sites, Buildings, Storeys, Spaces, Elements, Interfaces, Zones)
 
 ---
 

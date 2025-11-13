@@ -1,0 +1,693 @@
+@prefix inst: <http://linkedbuildingdata.net/ifc/resources20240411_123900/> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix bot:  <https://w3id.org/bot#> .
+@prefix beo:  <https://pi.pauwel.be/voc/buildingelement#> .
+@prefix mep:  <https://pi.pauwel.be/voc/distributionelement#> .
+@prefix props: <https://w3id.org/props#> .
+@prefix dpp: <http://www.semanticweb.org/janneke.bosma/DPP#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix bcao: <https://github.com/linmor-sys/BCAO.owl#> . 
+@prefix bpo: <https://w3id.org/bpo#> .
+@prefix bmp: <https://placeholder> . 
+@prefix dash: <http://datashapes.org/dash#> .
+@prefix schema: <http://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix locn: <http://www.w3.org/ns/locn#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix quantitykind: <http://qudt.org/vocab/quantitykind/> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+# ==============================================================================
+# MULTI-ONTOLOGY SHACL SHAPES FOR DIGITAL PRODUCT PASSPORT
+# Updated to support multiple ontology mappings (DPP, Schema.org, QUDT, BPO, etc.)
+# ==============================================================================
+
+# Element Shape (bot:Element) - Primary validation target
+# ==============================================================================
+dpp:ElementShape_MultiOntology
+    a sh:NodeShape ;
+    sh:targetClass bot:Element ;
+    
+    # GUID - accepts both bot:hasGuid and dpp:hasGuid and dcterms:identifier
+    sh:property [
+        sh:path [ sh:alternativePath (bot:hasGuid dpp:hasGuid dcterms:identifier) ] ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:minLength 1 ;
+    ] ;
+    
+    # Compressed GUID - legacy props namespace
+    sh:property [
+        sh:path props:hasCompressedGuid ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:minLength 1 ;
+    ] ;
+    
+    # Name - accepts rdfs:hasName or schema:name or dpp:hasTypeName
+    sh:property [
+        sh:path [ sh:alternativePath (rdfs:label schema:name dpp:hasTypeName) ] ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:minLength 1 ;
+    ] ;
+    
+    # Height - accepts qudt:hasHeight, schema:height, or dpp:hasHeight
+    sh:property [
+        sh:path [ sh:alternativePath (qudt:hasHeight schema:height dpp:hasHeight) ] ;
+        sh:or (
+            [ sh:datatype xsd:double ]
+            [ sh:datatype xsd:decimal ]
+        ) ;
+        sh:minCount 1 ;
+    ] ;
+    
+    # Length - accepts qudt:hasLength, schema:depth, or dpp:hasLength  
+    sh:property [
+        sh:path [ sh:alternativePath (qudt:hasLength schema:depth dpp:hasLength) ] ;
+        sh:or (
+            [ sh:datatype xsd:double ]
+            [ sh:datatype xsd:decimal ]
+        ) ;
+        sh:minCount 1 ;
+    ] ;
+    
+    # Width - accepts qudt:hasWidth, schema:width, or dpp:hasWidth
+    sh:property [
+        sh:path [ sh:alternativePath (qudt:hasWidth schema:width dpp:hasWidth) ] ;
+        sh:or (
+            [ sh:datatype xsd:double ]
+            [ sh:datatype xsd:decimal ]
+        ) ;
+        sh:minCount 1 ;
+    ] ;
+    
+    # Area - accepts qudt:hasArea or dpp:hasArea
+    sh:property [
+        sh:path [ sh:alternativePath (qudt:hasArea dpp:hasArea) ] ;
+        sh:or (
+            [ sh:datatype xsd:double ]
+            [ sh:datatype xsd:decimal ]
+        ) ;
+        sh:minCount 1 ;
+    ] ;
+    
+    # Volume - accepts qudt:hasVolume or dpp:hasVolume
+    sh:property [
+        sh:path [ sh:alternativePath (qudt:hasVolume dpp:hasVolume) ] ;
+        sh:or (
+            [ sh:datatype xsd:double ]
+            [ sh:datatype xsd:decimal ]
+        ) ;
+        sh:minCount 1 ;
+    ] ;
+    
+    # Material - accepts dpp:hasMaterial, schema:material, or bpo:consistsOf
+    sh:property [
+        sh:path [ sh:alternativePath (dpp:hasMaterial schema:material bpo:consistsOf) ] ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:minLength 1 ;
+    ] ;
+    
+    # Material Type - accepts dpp:hasMaterialType or schema:additionalType
+    sh:property [
+        sh:path [ sh:alternativePath (dpp:hasMaterialType schema:additionalType) ] ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+    ] ;
+    
+    # Category - accepts schema:category or dpp:hasCategory
+    sh:property [
+        sh:path [ sh:alternativePath (schema:category dpp:hasCategory) ] ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:minLength 1 ;
+    ] ;
+    
+    # Family/Product Type - accepts bpo:hasProductType or schema:productID
+    sh:property [
+        sh:path [ sh:alternativePath (bpo:hasProductType schema:productID dpp:hasFamily) ] ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:minLength 1 ;
+    ] ;
+    
+    # Color - accepts schema:color or dpp:hasColor
+    sh:property [
+        sh:path [ sh:alternativePath (schema:color dpp:hasColor) ] ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+    ] ;
+    
+    # Service Life - accepts dpp:hasServiceLife or schema:duration
+    sh:property [
+        sh:path [ sh:alternativePath (dpp:hasServiceLife schema:duration) ] ;
+        sh:or (
+            [ sh:datatype xsd:integer ]
+            [ sh:datatype xsd:int ]
+        ) ;
+        sh:minCount 0 ;
+    ] ;
+    
+    # Warranty - accepts dpp:hasWarranty or schema:warranty
+    sh:property [
+        sh:path [ sh:alternativePath (dpp:hasWarranty schema:warranty) ] ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 0 ;
+    ] ;
+    
+    # Weight - accepts dpp:hasWeight or schema:weight
+    sh:property [
+        sh:path [ sh:alternativePath (dpp:hasWeight schema:weight) ] ;
+        sh:or (
+            [ sh:datatype xsd:double ]
+            [ sh:datatype xsd:decimal ]
+        ) ;
+        sh:minCount 0 ;
+    ] ;
+    
+    # Origin - accepts dpp:hasOrigin, schema:manufacturer, or prov:wasAttributedTo
+    sh:property [
+        sh:path [ sh:alternativePath (dpp:hasOrigin schema:manufacturer prov:wasAttributedTo) ] ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+    ] ;
+    
+    # ID - accepts dpp:hasId, dcterms:identifier, or schema:identifier
+    sh:property [
+        sh:path [ sh:alternativePath (dpp:hasId dcterms:identifier schema:identifier) ] ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+    ] ;
+    
+    # Level/Storey - accepts bot:hasStorey or dpp:hasLevel
+    sh:property [
+        sh:path [ sh:alternativePath (bot:hasStorey dpp:hasLevel) ] ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+    ] ;
+    
+    # Host - accepts bot:hasHost or dpp:hasHost
+    sh:property [
+        sh:path [ sh:alternativePath (bot:hasHost dpp:hasHost) ] ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+    ] ;
+    
+    # Phase Created - accepts dpp:hasPhase or prov:wasGeneratedBy
+    sh:property [
+        sh:path [ sh:alternativePath (dpp:hasPhase prov:wasGeneratedBy) ] ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+    ] ;
+    
+    # Circularity Property Set
+    sh:property [
+        sh:path dpp:hasCircularityPropertySet ;
+        sh:nodeKind sh:IRI ;
+        sh:class dpp:circularityPropertySet ;
+        sh:minCount 0 ;
+        sh:maxCount 1 ;
+    ] .
+
+# Circularity Property Set Shape
+# ==============================================================================
+dpp:CircularityPropertySetShape_MultiOntology
+    a sh:NodeShape ;
+    sh:targetClass dpp:circularityPropertySet ;
+    
+    # Recycling Potential
+    sh:property [
+        sh:path dpp:hasRecyclingPotential ;
+        sh:or (
+            [ sh:datatype xsd:double ]
+            [ sh:datatype xsd:decimal ]
+            [ sh:datatype xsd:integer ]
+        ) ;
+        sh:minCount 0 ;
+    ] ;
+    
+    # Reusability Potential
+    sh:property [
+        sh:path dpp:hasReusabilityPotential ;
+        sh:or (
+            [ sh:datatype xsd:double ]
+            [ sh:datatype xsd:decimal ]
+            [ sh:datatype xsd:integer ]
+        ) ;
+        sh:minCount 0 ;
+    ] ;
+    
+    # Disassembly Potential
+    sh:property [
+        sh:path dpp:hasDisassemblyPotential ;
+        sh:or (
+            [ sh:datatype xsd:double ]
+            [ sh:datatype xsd:decimal ]
+            [ sh:datatype xsd:integer ]
+        ) ;
+        sh:minCount 0 ;
+    ] ;
+    
+    # Circularity Index
+    sh:property [
+        sh:path dpp:hasCircularityIndex ;
+        sh:or (
+            [ sh:datatype xsd:double ]
+            [ sh:datatype xsd:decimal ]
+        ) ;
+        sh:minCount 0 ;
+    ] ;
+    
+    # Prefabrication
+    sh:property [
+        sh:path dpp:hasPrefabrication ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 0 ;
+    ] ;
+    
+    # Prefabrication Factor
+    sh:property [
+        sh:path dpp:hasPrefabricationFactor ;
+        sh:or (
+            [ sh:datatype xsd:double ]
+            [ sh:datatype xsd:decimal ]
+            [ sh:datatype xsd:integer ]
+        ) ;
+        sh:minCount 0 ;
+    ] ;
+    
+    # Reusability
+    sh:property [
+        sh:path dpp:hasReusability ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 0 ;
+    ] ;
+    
+    # Deconstructability Score
+    sh:property [
+        sh:path dpp:hasDeconstructabilityScore ;
+        sh:or (
+            [ sh:datatype xsd:double ]
+            [ sh:datatype xsd:decimal ]
+        ) ;
+        sh:minCount 0 ;
+    ] ;
+    
+    # Recovery Score
+    sh:property [
+        sh:path dpp:hasRecoveryScore ;
+        sh:or (
+            [ sh:datatype xsd:double ]
+            [ sh:datatype xsd:decimal ]
+        ) ;
+        sh:minCount 0 ;
+    ] .
+
+# Environmental Properties Shape
+# ==============================================================================
+dpp:EnvironmentalPropertiesShape_MultiOntology
+    a sh:NodeShape ;
+    sh:targetClass bot:Element ;
+    
+    # Global Warming Potential - accepts dpp:hasGlobalWarmingPotential or schema:emissionsCO2
+    sh:property [
+        sh:path [ sh:alternativePath (dpp:hasGlobalWarmingPotential schema:emissionsCO2) ] ;
+        sh:or (
+            [ sh:datatype xsd:double ]
+            [ sh:datatype xsd:decimal ]
+        ) ;
+        sh:minCount 0 ;
+    ] ;
+    
+    # Embodied Carbon
+    sh:property [
+        sh:path dpp:hasEmbodiedCarbon ;
+        sh:or (
+            [ sh:datatype xsd:double ]
+            [ sh:datatype xsd:decimal ]
+        ) ;
+        sh:minCount 0 ;
+    ] ;
+    
+    # Biogenic Carbon
+    sh:property [
+        sh:path dpp:hasBiogenicCarbon ;
+        sh:or (
+            [ sh:datatype xsd:double ]
+            [ sh:datatype xsd:decimal ]
+        ) ;
+        sh:minCount 0 ;
+    ] ;
+    
+    # End of Life Emissions
+    sh:property [
+        sh:path dpp:hasEndOfLifeEmissions ;
+        sh:or (
+            [ sh:datatype xsd:double ]
+            [ sh:datatype xsd:decimal ]
+        ) ;
+        sh:minCount 0 ;
+    ] ;
+    
+    # Environmental Score
+    sh:property [
+        sh:path dpp:hasEnvironmentalScore ;
+        sh:or (
+            [ sh:datatype xsd:double ]
+            [ sh:datatype xsd:decimal ]
+        ) ;
+        sh:minCount 0 ;
+    ] ;
+    
+    # EPD - accepts dpp:hasEPD or schema:hasCredential
+    sh:property [
+        sh:path [ sh:alternativePath (dpp:hasEPD schema:hasCredential) ] ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 0 ;
+    ] ;
+    
+    # Primary Energy Non-Renewable
+    sh:property [
+        sh:path dpp:hasPrimaryEnergyNonRenewable ;
+        sh:or (
+            [ sh:datatype xsd:double ]
+            [ sh:datatype xsd:decimal ]
+        ) ;
+        sh:minCount 0 ;
+    ] ;
+    
+    # Primary Energy Renewable
+    sh:property [
+        sh:path dpp:hasPrimaryEnergyRenewable ;
+        sh:or (
+            [ sh:datatype xsd:double ]
+            [ sh:datatype xsd:decimal ]
+        ) ;
+        sh:minCount 0 ;
+    ] ;
+    
+    # Acidification Potential
+    sh:property [
+        sh:path dpp:hasAcidificationPotential ;
+        sh:or (
+            [ sh:datatype xsd:double ]
+            [ sh:datatype xsd:decimal ]
+        ) ;
+        sh:minCount 0 ;
+    ] ;
+    
+    # Environmental Impact
+    sh:property [
+        sh:path dpp:hasEnvironmentalImpact ;
+        sh:or (
+            [ sh:datatype xsd:double ]
+            [ sh:datatype xsd:decimal ]
+            [ sh:datatype xsd:integer ]
+        ) ;
+        sh:minCount 0 ;
+    ] .
+
+# Safety & Compliance Properties Shape
+# ==============================================================================
+dpp:SafetyComplianceShape_MultiOntology
+    a sh:NodeShape ;
+    sh:targetClass bot:Element ;
+    
+    # Fire Class
+    sh:property [
+        sh:path dpp:hasFireClass ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+    ] ;
+    
+    # Fire D Subclass
+    sh:property [
+        sh:path dpp:hasFireDSubclass ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+    ] ;
+    
+    # Fire S Subclass
+    sh:property [
+        sh:path dpp:hasFireSSubclass ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+    ] ;
+    
+    # Fire Resistance
+    sh:property [
+        sh:path dpp:hasFireResistance ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+    ] ;
+    
+    # Compliance - accepts dpp:hasCompliance or schema:isAccessibleForFree
+    sh:property [
+        sh:path [ sh:alternativePath (dpp:hasCompliance schema:isAccessibleForFree) ] ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 0 ;
+    ] ;
+    
+    # Toxicity
+    sh:property [
+        sh:path dpp:hasToxicity ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 0 ;
+    ] ;
+    
+    # Coatings
+    sh:property [
+        sh:path dpp:hasCoatings ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 0 ;
+    ] ;
+    
+    # Coating Type
+    sh:property [
+        sh:path dpp:hasCoatingType ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+    ] ;
+    
+    # Particulate Matter
+    sh:property [
+        sh:path dpp:hasParticulateMatter ;
+        sh:or (
+            [ sh:datatype xsd:double ]
+            [ sh:datatype xsd:decimal ]
+        ) ;
+        sh:minCount 0 ;
+    ] ;
+    
+    # Sound Quality Performance
+    sh:property [
+        sh:path dpp:hasSoundQualityPerformance ;
+        sh:or (
+            [ sh:datatype xsd:double ]
+            [ sh:datatype xsd:decimal ]
+        ) ;
+        sh:minCount 0 ;
+    ] .
+
+# Aesthetic & Sensory Properties Shape
+# ==============================================================================
+dpp:AestheticSensoryShape_MultiOntology
+    a sh:NodeShape ;
+    sh:targetClass bot:Element ;
+    
+    # Aesthetic Score
+    sh:property [
+        sh:path dpp:hasAestheticScore ;
+        sh:or (
+            [ sh:datatype xsd:integer ]
+            [ sh:datatype xsd:int ]
+            [ sh:datatype xsd:string ]
+        ) ;
+        sh:minCount 0 ;
+    ] ;
+    
+    # Aging Score
+    sh:property [
+        sh:path dpp:hasAgingScore ;
+        sh:or (
+            [ sh:datatype xsd:integer ]
+            [ sh:datatype xsd:int ]
+            [ sh:datatype xsd:string ]
+        ) ;
+        sh:minCount 0 ;
+    ] ;
+    
+    # Architectural Score
+    sh:property [
+        sh:path dpp:hasArchitecturalScore ;
+        sh:or (
+            [ sh:datatype xsd:integer ]
+            [ sh:datatype xsd:int ]
+            [ sh:datatype xsd:string ]
+        ) ;
+        sh:minCount 0 ;
+    ] ;
+    
+    # Odor
+    sh:property [
+        sh:path dpp:hasOdor ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+    ] ;
+    
+    # Thermal Feeling
+    sh:property [
+        sh:path dpp:hasThermalFeeling ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+    ] ;
+    
+    # Texture
+    sh:property [
+        sh:path dpp:hasTexture ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+    ] ;
+    
+    # Agricultural Value
+    sh:property [
+        sh:path dpp:hasAgriculturalValue ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+    ] ;
+    
+    # Climate Suitability
+    sh:property [
+        sh:path dpp:hasClimateSuitability ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+    ] ;
+    
+    # Resource Availability
+    sh:property [
+        sh:path dpp:hasResourceAvailability ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+    ] .
+
+# Technical Data Properties Shape
+# ==============================================================================
+dpp:TechnicalDataShape_MultiOntology
+    a sh:NodeShape ;
+    sh:targetClass bot:Element ;
+    
+    # Standard Compliance
+    sh:property [
+        sh:path dpp:hasStandardCompliance ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 0 ;
+    ] ;
+    
+    # Compressive Strength
+    sh:property [
+        sh:path dpp:hasCompressiveStrength ;
+        sh:or (
+            [ sh:datatype xsd:double ]
+            [ sh:datatype xsd:decimal ]
+        ) ;
+        sh:minCount 0 ;
+    ] ;
+    
+    # Shear Strength
+    sh:property [
+        sh:path dpp:hasShearStrength ;
+        sh:or (
+            [ sh:datatype xsd:double ]
+            [ sh:datatype xsd:decimal ]
+        ) ;
+        sh:minCount 0 ;
+    ] ;
+    
+    # Vapor Absorption
+    sh:property [
+        sh:path dpp:hasVaporAbsorption ;
+        sh:or (
+            [ sh:datatype xsd:double ]
+            [ sh:datatype xsd:decimal ]
+        ) ;
+        sh:minCount 0 ;
+    ] ;
+    
+    # Vapor Diffusion Dry
+    sh:property [
+        sh:path dpp:hasVaporDiffusionDry ;
+        sh:or (
+            [ sh:datatype xsd:double ]
+            [ sh:datatype xsd:decimal ]
+            [ sh:datatype xsd:integer ]
+        ) ;
+        sh:minCount 0 ;
+    ] ;
+    
+    # Vapor Diffusion Wet
+    sh:property [
+        sh:path dpp:hasVaporDiffusionWet ;
+        sh:or (
+            [ sh:datatype xsd:double ]
+            [ sh:datatype xsd:decimal ]
+            [ sh:datatype xsd:integer ]
+        ) ;
+        sh:minCount 0 ;
+    ] .
+
+# Cost Data Properties Shape
+# ==============================================================================
+dpp:CostDataShape_MultiOntology
+    a sh:NodeShape ;
+    sh:targetClass bot:Element ;
+    
+    # Replacement Cost - accepts dpp:hasReplacementCost or schema:price
+    sh:property [
+        sh:path [ sh:alternativePath (dpp:hasReplacementCost schema:price) ] ;
+        sh:or (
+            [ sh:datatype xsd:double ]
+            [ sh:datatype xsd:decimal ]
+        ) ;
+        sh:minCount 0 ;
+    ] ;
+    
+    # Unit Cost - accepts dpp:hasUnitCost or schema:price
+    sh:property [
+        sh:path dpp:hasUnitCost ;
+        sh:or (
+            [ sh:datatype xsd:double ]
+            [ sh:datatype xsd:decimal ]
+        ) ;
+        sh:minCount 0 ;
+    ] ;
+    
+    # Circular Benefit
+    sh:property [
+        sh:path dpp:hasCircularBenefit ;
+        sh:or (
+            [ sh:datatype xsd:double ]
+            [ sh:datatype xsd:decimal ]
+        ) ;
+        sh:minCount 0 ;
+    ] .
+
+# Temporal & Origin Properties Shape
+# ==============================================================================
+dpp:TemporalOriginShape_MultiOntology
+    a sh:NodeShape ;
+    sh:targetClass bot:Element ;
+    
+    # Sourcing Distance
+    sh:property [
+        sh:path dpp:hasSourcingDistance ;
+        sh:or (
+            [ sh:datatype xsd:double ]
+            [ sh:datatype xsd:decimal ]
+        ) ;
+        sh:minCount 0 ;
+    ] .

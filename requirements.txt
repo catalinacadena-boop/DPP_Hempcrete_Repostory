@@ -1,0 +1,42 @@
+# Core Dependencies for DPP Hempcrete Repository
+
+# IFC Processing
+ifcopenshell>=0.7.0
+
+# RDF/OWL Ontology Processing
+rdflib>=6.0.0
+pyshacl>=0.21.0
+
+# PDF Report Generation
+reportlab>=4.0.0
+
+# GUI & File Dialogs
+tk>=0.0.1
+
+# Revit Integration (PyRevit)
+# Note: pyrevit is installed as part of Revit plugin ecosystem
+# These are the main dependencies used by PyRevit scripts:
+# - pyrevit (requires Revit installation)
+# - DB (from pyrevit, for Revit API)
+# - revit (from pyrevit, for Revit interaction)
+# - script (from pyrevit)
+# - forms (from pyrevit)
+
+# Microsoft Office Interop (for Excel operations)
+# Note: Requires Windows/.NET environment
+# Microsoft.Office.Interop.Excel (handled by clr reference)
+
+# System Libraries (already included in Python standard library)
+# - datetime
+# - os
+# - re
+# - sys
+
+# .NET Framework/CLR Dependencies (for guRoo_xclUtils.py)
+# These require IronPython or compatible environment:
+# - clr
+# - System
+# - System.Collections.Generic
+# - System.Runtime.InteropServices
+# - System.Drawing
+# - System.Reflection

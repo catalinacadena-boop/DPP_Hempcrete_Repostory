@@ -23,8 +23,16 @@ from Microsoft.Office.Interop import Excel
 # Force int or string
 def xclUtils_strFix(s):
 	try:
-		fix = str(int(s))
+		# Try to convert to float first to preserve decimals
+		num = float(s)
+		# If it's a whole number, return as int (no decimal point)
+		if num == int(num):
+			fix = str(int(num))
+		else:
+			# It's a decimal, preserve it
+			fix = str(num)
 	except:
+		# Not a number, return as string
 		fix = str(s)
 	return fix
 

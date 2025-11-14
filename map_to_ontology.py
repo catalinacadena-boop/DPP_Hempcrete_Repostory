@@ -6,6 +6,8 @@ This makes the data readable by any ontology system through multiple mappings an
 from rdflib import Graph, Namespace, Literal, URIRef, RDF, RDFS, XSD, OWL
 from rdflib.namespace import DCTERMS
 import sys
+import os
+from tkinter import Tk, filedialog
 
 # Define namespaces
 BOT = Namespace("https://w3id.org/bot#")
@@ -260,15 +262,52 @@ def generate_owl_equivalences(graph, property_mapping, ns_mapping):
     print(f"✓ Generated OWL equivalence statements for {len(property_uris)} properties")
 
 if __name__ == "__main__":
-    # Default input/output files
-    input_file = "Project1.ttl"
-    output_file = "Project1_mapped.ttl"
-    
-    # Allow command line arguments
+    # Check if command line arguments provided
     if len(sys.argv) > 1:
         input_file = sys.argv[1]
-    if len(sys.argv) > 2:
-        output_file = sys.argv[2]
+        if len(sys.argv) > 2:
+            output_file = sys.argv[2]
+        else:
+            # Generate output filename from input
+            base = os.path.splitext(input_file)[0]
+            output_file = f"{base}_mapped.ttl"
+    else:
+        # Use GUI file dialogs
+        print("Please select the input TTL file to map...")
+        
+        root = Tk()
+        root.withdraw()  # Hide main window
+        root.attributes('-topmost', True)  # Bring dialog to front
+        
+        # Select input file
+        input_file = filedialog.askopenfilename(
+            title="Select input TTL file",
+            filetypes=[("Turtle files", "*.ttl"), ("All files", "*.*")],
+            initialdir=os.getcwd()
+        )
+        
+        if not input_file:
+            print("No input file selected. Exiting.")
+            sys.exit(0)
+        
+        # Generate default output filename
+        base = os.path.splitext(input_file)[0]
+        default_output = f"{base}_mapped.ttl"
+        
+        # Select output file location
+        output_file = filedialog.asksaveasfilename(
+            title="Save mapped TTL file as",
+            defaultextension=".ttl",
+            filetypes=[("Turtle files", "*.ttl"), ("All files", "*.*")],
+            initialdir=os.path.dirname(input_file),
+            initialfile=os.path.basename(default_output)
+        )
+        
+        if not output_file:
+            print("No output file selected. Exiting.")
+            sys.exit(0)
+        
+        root.destroy()
     
     try:
         map_properties_to_ontology(input_file, output_file)

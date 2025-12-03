@@ -548,7 +548,7 @@ The tools recognize these parameter patterns:
 
 ## 🎓 Academic Context
 
-This repository is part of a master's thesis on **Digital Product Passports for Hemp-based Building Materials** at Pontificia Universidad Javeriana.
+This repository is part of a master's thesis on **Digital Product Passports for Hemp-based Building Materials** at Politecnico di Torino.
 
 **Research Focus**:
 - Circular economy in construction
@@ -561,7 +561,7 @@ This repository is part of a master's thesis on **Digital Product Passports for 
 ## 📧 Contact & Support
 
 **Author**: Catalina Cadena  
-**Institution**: Pontificia Universidad Javeriana  
+**Institution**: Politecnico di Torino
 **Repository**: https://github.com/catalinacadena-boop/DPP_Hempcrete_Repostory
 
 For issues or questions, please open an issue on GitHub.

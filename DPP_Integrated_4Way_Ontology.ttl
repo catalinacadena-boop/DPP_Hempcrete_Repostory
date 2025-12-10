@@ -1,0 +1,1066 @@
+@prefix : <http://www.semanticweb.org/janneke.bosma/DPP_Integrated#> .
+@prefix bio: <http://ontorion.com/namespace#> .
+@prefix bot: <https://w3id.org/bot#> .
+@prefix dpp: <http://www.semanticweb.org/janneke.bosma/DPP#> .
+@prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+@prefix schema: <http://schema.org/> .
+@prefix quantitykind: <http://qudt.org/vocab/quantitykind/> .
+@base <http://www.semanticweb.org/janneke.bosma/DPP_Integrated#> .
+
+<https://github.com/catalinacadena-boop/DPP_Hempcrete_Repostory/ontology/DPPnetwork> rdf:type owl:Ontology ;
+                                                                                      owl:versionIRI <http://www.semanticweb.org/janneke.bosma/DPP_Integrated/1.0#> ;
+                                                                                      owl:imports <https://w3id.org/bot> ;
+                                                                                      <http://purl.org/dc/terms/created> "2025-12-03"^^xsd:date ;
+                                                                                      <http://purl.org/dc/terms/creator> "Catalina Cadena" ;
+                                                                                      <http://purl.org/dc/terms/description> "This ontology integrates four complementary ontologies to enable comprehensive digital product passports for hempcrete building elements. BOT provides spatial topology, QUDT provides measurement standardization, Bio-Material provides domain knowledge about hemp and bio-based materials, and DPP provides circularity and lifecycle tracking."@en ;
+                                                                                      rdfs:comment "Integrated ontology merging DPP (Digital Product Passport), BOT (Building Topology Ontology), Bio-Material Ontology, and QUDT (Quantities, Units, Dimensions and Types) for comprehensive hempcrete building element lifecycle tracking with circularity metrics."@en ;
+                                                                                      rdfs:label "DPP Integrated 4-Way Ontology"@en ;
+                                                                                      owl:versionInfo "1.0" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://ontorion.com/namespace#hasApplication
+bio:hasApplication rdf:type owl:AnnotationProperty .
+
+
+###  http://ontorion.com/namespace#hasPartIn
+bio:hasPartIn rdf:type owl:AnnotationProperty .
+
+
+###  http://ontorion.com/namespace#isCultivatedBy
+bio:isCultivatedBy rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/created
+<http://purl.org/dc/terms/created> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/creator
+<http://purl.org/dc/terms/creator> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/description
+<http://purl.org/dc/terms/description> rdf:type owl:AnnotationProperty .
+
+
+###  http://qudt.org/schema/qudt/hasQuantityKind
+qudt:hasQuantityKind rdf:type owl:AnnotationProperty .
+
+
+###  http://qudt.org/schema/qudt/numericValue
+qudt:numericValue rdf:type owl:AnnotationProperty .
+
+
+###  http://qudt.org/schema/qudt/unit
+qudt:unit rdf:type owl:AnnotationProperty .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasDescription
+dpp:hasDescription rdf:type owl:AnnotationProperty ;
+                   rdfs:subPropertyOf rdfs:comment .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasName
+dpp:hasName rdf:type owl:AnnotationProperty ;
+            rdfs:subPropertyOf rdfs:label .
+
+
+###  http://www.w3.org/2003/01/geo/wgs84_pos#lat
+geo:lat rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2003/01/geo/wgs84_pos#long
+geo:long rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/ns/prov#endedAtTime
+prov:endedAtTime rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/ns/prov#startedAtTime
+prov:startedAtTime rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/ns/prov#wasAssociatedWith
+prov:wasAssociatedWith rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Datatypes
+#################################################################
+
+###  http://www.w3.org/2001/XMLSchema#date
+xsd:date rdf:type rdfs:Datatype .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://ontorion.com/namespace#hasPart
+bio:hasPart rdf:type owl:ObjectProperty .
+
+
+###  http://ontorion.com/namespace#isProducedFrom
+bio:isProducedFrom rdf:type owl:ObjectProperty .
+
+
+###  http://schema.org/price
+schema:price rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasAngle
+dpp:hasAngle rdf:type owl:ObjectProperty ;
+             rdfs:domain dpp:element ;
+             rdfs:range qudt:QuantityValue ;
+             qudt:hasQuantityKind quantitykind:Angle ;
+             rdfs:comment "Angular measurement. Value should use QUDT QuantityValue with unit:DEG or unit:RAD."@en ;
+             rdfs:label "has angle"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasBiobasedContent
+dpp:hasBiobasedContent rdf:type owl:ObjectProperty ;
+                       rdfs:domain dpp:material ;
+                       rdfs:range qudt:QuantityValue ;
+                       qudt:hasQuantityKind quantitykind:DimensionlessRatio ;
+                       rdfs:comment "Bio-based content as dimensionless ratio (0-1) or percentage. Value should use QUDT QuantityValue."@en ;
+                       rdfs:label "has bio-based content"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasCarbonStorage
+dpp:hasCarbonStorage rdf:type owl:ObjectProperty ;
+                     rdfs:domain dpp:element ;
+                     rdfs:range qudt:QuantityValue ;
+                     qudt:hasQuantityKind quantitykind:Mass ;
+                     rdfs:comment "Amount of carbon sequestered/stored. Value should use QUDT QuantityValue with unit:KiloGM-CO2."@en ;
+                     rdfs:label "has carbon storage"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasCircularityPropertySet
+dpp:hasCircularityPropertySet rdf:type owl:ObjectProperty ;
+                              rdfs:domain dpp:element ;
+                              rdfs:range dpp:circularityPropertySet ;
+                              rdfs:comment "Links an element to its circularity metrics and sustainability properties."@en ;
+                              rdfs:label "has circularity property set"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasClassificationCode
+dpp:hasClassificationCode rdf:type owl:ObjectProperty ;
+                          rdfs:domain dpp:element ;
+                          rdfs:range dpp:ClassificationCode ;
+                          rdfs:comment "Assigns classification codes (NEN2767-4, NL-SfB) to elements."@en ;
+                          rdfs:label "has classification code"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasCompressiveStrength
+dpp:hasCompressiveStrength rdf:type owl:ObjectProperty ;
+                           rdfs:domain dpp:material ;
+                           rdfs:range qudt:QuantityValue ;
+                           qudt:hasQuantityKind quantitykind:Pressure ;
+                           rdfs:comment "Compressive strength. Value should use QUDT QuantityValue with unit:MegaPA or unit:PSI."@en ;
+                           rdfs:label "has compressive strength"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasConditionAssessment
+dpp:hasConditionAssessment rdf:type owl:ObjectProperty ;
+                           rdfs:domain dpp:element ;
+                           rdfs:range dpp:conditionAssessment ;
+                           rdfs:comment "Links element to its condition assessment data."@en ;
+                           rdfs:label "has condition assessment"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasCost
+dpp:hasCost rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf schema:price ;
+            rdfs:domain dpp:element ;
+            rdfs:range qudt:QuantityValue ;
+            qudt:hasQuantityKind quantitykind:Currency ;
+            rdfs:comment "Cost or price. Value should use QUDT QuantityValue with unit:Euro, unit:USD, etc."@en ;
+            rdfs:label "has cost"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasDensity
+dpp:hasDensity rdf:type owl:ObjectProperty ;
+               rdfs:domain dpp:material ;
+               rdfs:range qudt:QuantityValue ;
+               qudt:hasQuantityKind quantitykind:Density ;
+               rdfs:comment "Density of the material. Value should use QUDT QuantityValue with unit:KiloGM-PER-M3."@en ;
+               rdfs:label "has density"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasDisassemblyPotential
+dpp:hasDisassemblyPotential rdf:type owl:ObjectProperty ;
+                            rdfs:domain dpp:element ;
+                            rdfs:range dpp:disassemblyPotential ;
+                            rdfs:comment "Indicates the ease of disassembling the element."@en ;
+                            rdfs:label "has disassembly potential"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasDisassemblyPotentialValue
+dpp:hasDisassemblyPotentialValue rdf:type owl:ObjectProperty ;
+                                 rdfs:domain dpp:disassemblyPotential ;
+                                 rdfs:range qudt:QuantityValue ;
+                                 qudt:hasQuantityKind quantitykind:DimensionlessRatio ;
+                                 rdfs:comment "Numeric value for disassembly potential (0-1 scale). Value should use QUDT QuantityValue as dimensionless ratio."@en ;
+                                 rdfs:label "has disassembly potential value"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasElement
+dpp:hasElement rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf bot:hasElement ;
+               rdfs:domain [ rdf:type owl:Class ;
+                             owl:unionOf ( dpp:circularityPropertySet
+                                           bot:Zone
+                                         )
+                           ] ;
+               rdfs:range dpp:element ;
+               rdfs:comment "Links a circularity property set or spatial zone to a building element."@en ;
+               rdfs:label "has element"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasEmbodiedEnergy
+dpp:hasEmbodiedEnergy rdf:type owl:ObjectProperty ;
+                      rdfs:domain dpp:element ;
+                      rdfs:range qudt:QuantityValue ;
+                      qudt:hasQuantityKind quantitykind:Energy ;
+                      rdfs:comment "Total embodied energy. Value should use QUDT QuantityValue with unit:MegaJ or unit:KiloW-HR."@en ;
+                      rdfs:label "has embodied energy"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasExternalParty
+dpp:hasExternalParty rdf:type owl:ObjectProperty ;
+                     rdfs:domain dpp:element ;
+                     rdfs:range dpp:externalParty ;
+                     rdfs:comment "Links element to external parties (suppliers, contractors, certifiers)."@en ;
+                     rdfs:label "has external party"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasFireRating
+dpp:hasFireRating rdf:type owl:ObjectProperty ;
+                  rdfs:domain dpp:element ;
+                  rdfs:range qudt:QuantityValue ;
+                  qudt:hasQuantityKind quantitykind:Time ;
+                  rdfs:comment "Fire resistance duration. Value should use QUDT QuantityValue with unit:HR or unit:MIN."@en ;
+                  rdfs:label "has fire rating"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasFutureFunction
+dpp:hasFutureFunction rdf:type owl:ObjectProperty ;
+                      rdfs:domain dpp:element ;
+                      rdfs:range dpp:futureFuncion ;
+                      rdfs:comment "Describes potential future uses or functions for the element."@en ;
+                      rdfs:label "has future function"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasGlobalWarmingPotential
+dpp:hasGlobalWarmingPotential rdf:type owl:ObjectProperty ;
+                              rdfs:domain dpp:element ;
+                              rdfs:range qudt:QuantityValue ;
+                              qudt:hasQuantityKind quantitykind:Mass ;
+                              rdfs:comment "Global warming potential in CO2 equivalents. Value should use QUDT QuantityValue with unit:KiloGM-CO2eq."@en ;
+                              rdfs:label "has global warming potential"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasHeight
+dpp:hasHeight rdf:type owl:ObjectProperty ;
+              rdfs:domain dpp:element ;
+              rdfs:range qudt:QuantityValue ;
+              qudt:hasQuantityKind quantitykind:Length ;
+              rdfs:comment "Height dimension of the element. Value should use QUDT QuantityValue with unit:M, unit:CM, or unit:MilliM."@en ;
+              rdfs:label "has height"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasHempContent
+dpp:hasHempContent rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf dpp:hasBiobasedContent ;
+                   rdfs:domain dpp:HempcreteComposite ;
+                   rdfs:range qudt:QuantityValue ;
+                   qudt:hasQuantityKind quantitykind:DimensionlessRatio ;
+                   rdfs:comment "Percentage of hemp by dry weight in hempcrete mix. Value should use QUDT QuantityValue as dimensionless ratio."@en ;
+                   rdfs:label "has hemp content"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasLength
+dpp:hasLength rdf:type owl:ObjectProperty ;
+              rdfs:domain dpp:element ;
+              rdfs:range qudt:QuantityValue ;
+              qudt:hasQuantityKind quantitykind:Length ;
+              rdfs:comment "Length dimension of the element. Value should use QUDT QuantityValue with unit:M, unit:CM, or unit:MilliM."@en ;
+              rdfs:label "has length"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasLog
+dpp:hasLog rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf prov:wasGeneratedBy ;
+           rdfs:domain dpp:element ;
+           rdfs:range dpp:log ;
+           rdfs:comment "Links element to its provenance and event log."@en ;
+           rdfs:label "has log"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasMaterial
+dpp:hasMaterial rdf:type owl:ObjectProperty ;
+                rdfs:domain [ rdf:type owl:Class ;
+                              owl:unionOf ( dpp:element
+                                            dpp:product
+                                          )
+                            ] ;
+                rdfs:range dpp:material ;
+                rdfs:comment "Specifies the material composition of an element or product."@en ;
+                rdfs:label "has material"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasMoistureContent
+dpp:hasMoistureContent rdf:type owl:ObjectProperty ;
+                       rdfs:domain dpp:material ;
+                       rdfs:range qudt:QuantityValue ;
+                       qudt:hasQuantityKind quantitykind:DimensionlessRatio ;
+                       rdfs:comment "Moisture content as dimensionless ratio or percentage. Value should use QUDT QuantityValue."@en ;
+                       rdfs:label "has moisture content"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasOrigin
+dpp:hasOrigin rdf:type owl:ObjectProperty ;
+              rdfs:domain [ rdf:type owl:Class ;
+                            owl:unionOf ( dpp:element
+                                          dpp:rawMaterial
+                                        )
+                          ] ;
+              rdfs:range dpp:origin ;
+              rdfs:comment "Specifies the geographic or supply chain origin."@en ;
+              rdfs:label "has origin"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasOwner
+dpp:hasOwner rdf:type owl:ObjectProperty ;
+             rdfs:domain dpp:element ;
+             rdfs:range dpp:owner ;
+             rdfs:comment "Identifies the current owner of the element."@en ;
+             rdfs:label "has owner"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasPorosity
+dpp:hasPorosity rdf:type owl:ObjectProperty ;
+                rdfs:domain dpp:material ;
+                rdfs:range qudt:QuantityValue ;
+                qudt:hasQuantityKind quantitykind:DimensionlessRatio ;
+                rdfs:comment "Porosity as dimensionless ratio (0-1 or percentage). Value should use QUDT QuantityValue."@en ;
+                rdfs:label "has porosity"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasProduct
+dpp:hasProduct rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf bot:containsElement ;
+               rdfs:domain dpp:element ;
+               rdfs:range dpp:product ;
+               rdfs:comment "Links an element to products it contains or comprises."@en ;
+               rdfs:label "has product"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasProofOfReuse
+dpp:hasProofOfReuse rdf:type owl:ObjectProperty ;
+                    rdfs:domain dpp:element ;
+                    rdfs:range dpp:proofOfReuse ;
+                    rdfs:comment "Links to documentation proving reuse capability or history."@en ;
+                    rdfs:label "has proof of reuse"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasRawMaterial
+dpp:hasRawMaterial rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf bio:isProducedFrom ;
+                   rdfs:domain dpp:material ;
+                   rdfs:range dpp:rawMaterial ;
+                   rdfs:comment "Traces material back to its raw material sources."@en ;
+                   rdfs:label "has raw material"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasRecycledContent
+dpp:hasRecycledContent rdf:type owl:ObjectProperty ;
+                       rdfs:domain dpp:material ;
+                       rdfs:range qudt:QuantityValue ;
+                       qudt:hasQuantityKind quantitykind:DimensionlessRatio ;
+                       rdfs:comment "Recycled content as dimensionless ratio (0-1) or percentage. Value should use QUDT QuantityValue."@en ;
+                       rdfs:label "has recycled content"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasRecyclingPotential
+dpp:hasRecyclingPotential rdf:type owl:ObjectProperty ;
+                          rdfs:domain dpp:element ;
+                          rdfs:range dpp:recyclingPotential ;
+                          rdfs:comment "Indicates recyclability potential of the element."@en ;
+                          rdfs:label "has recycling potential"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasRecyclingPotentialValue
+dpp:hasRecyclingPotentialValue rdf:type owl:ObjectProperty ;
+                               rdfs:domain dpp:recyclingPotential ;
+                               rdfs:range qudt:QuantityValue ;
+                               qudt:hasQuantityKind quantitykind:DimensionlessRatio ;
+                               rdfs:comment "Numeric value for recycling potential (0-1 scale). Value should use QUDT QuantityValue as dimensionless ratio."@en ;
+                               rdfs:label "has recycling potential value"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasReusabilityPotential
+dpp:hasReusabilityPotential rdf:type owl:ObjectProperty ;
+                            rdfs:domain dpp:element ;
+                            rdfs:range dpp:reusabilityPotential ;
+                            rdfs:comment "Indicates reusability potential of the element."@en ;
+                            rdfs:label "has reusability potential"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasReusabilityPotentialValue
+dpp:hasReusabilityPotentialValue rdf:type owl:ObjectProperty ;
+                                 rdfs:domain dpp:reusabilityPotential ;
+                                 rdfs:range qudt:QuantityValue ;
+                                 qudt:hasQuantityKind quantitykind:DimensionlessRatio ;
+                                 rdfs:comment "Numeric value for reusability potential (0-1 scale). Value should use QUDT QuantityValue as dimensionless ratio."@en ;
+                                 rdfs:label "has reusability potential value"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasServicelife
+dpp:hasServicelife rdf:type owl:ObjectProperty ;
+                   rdfs:domain dpp:element ;
+                   rdfs:range qudt:QuantityValue ;
+                   qudt:hasQuantityKind quantitykind:Time ;
+                   rdfs:comment "Expected service life. Value should use QUDT QuantityValue with unit:YR or unit:MO."@en ;
+                   rdfs:label "has servicelife"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasSpecificHeat
+dpp:hasSpecificHeat rdf:type owl:ObjectProperty ;
+                    rdfs:domain dpp:material ;
+                    rdfs:range qudt:QuantityValue ;
+                    qudt:hasQuantityKind quantitykind:SpecificHeatCapacity ;
+                    rdfs:comment "Specific heat capacity. Value should use QUDT QuantityValue with unit:J-PER-KiloGM-K."@en ;
+                    rdfs:label "has specific heat"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasSubElement
+dpp:hasSubElement rdf:type owl:ObjectProperty ;
+                  owl:equivalentProperty bot:hasSubElement ;
+                  rdfs:subPropertyOf bio:hasPart ;
+                  rdfs:domain dpp:element ;
+                  rdfs:range dpp:element ;
+                  rdfs:comment "Defines hierarchical composition relationships between elements."@en ;
+                  rdfs:label "has sub-element"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasThermalConductivity
+dpp:hasThermalConductivity rdf:type owl:ObjectProperty ;
+                           rdfs:domain dpp:material ;
+                           rdfs:range qudt:QuantityValue ;
+                           qudt:hasQuantityKind quantitykind:ThermalConductivity ;
+                           rdfs:comment "Thermal conductivity. Value should use QUDT QuantityValue with unit:W-PER-M-K."@en ;
+                           rdfs:label "has thermal conductivity"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasVolume
+dpp:hasVolume rdf:type owl:ObjectProperty ;
+              rdfs:domain dpp:element ;
+              rdfs:range qudt:QuantityValue ;
+              qudt:hasQuantityKind quantitykind:Volume ;
+              rdfs:comment "Volume of the element. Value should use QUDT QuantityValue with unit:M3."@en ;
+              rdfs:label "has volume"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasWarranty
+dpp:hasWarranty rdf:type owl:ObjectProperty ;
+                rdfs:domain dpp:element ;
+                rdfs:range qudt:QuantityValue ;
+                qudt:hasQuantityKind quantitykind:Time ;
+                rdfs:comment "Warranty period. Value should use QUDT QuantityValue with unit:YR or unit:MO."@en ;
+                rdfs:label "has warranty"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasWidth
+dpp:hasWidth rdf:type owl:ObjectProperty ;
+             rdfs:domain dpp:element ;
+             rdfs:range qudt:QuantityValue ;
+             qudt:hasQuantityKind quantitykind:Length ;
+             rdfs:comment "Width dimension of the element. Value should use QUDT QuantityValue with unit:M, unit:CM, or unit:MilliM."@en ;
+             rdfs:label "has width"@en .
+
+
+###  http://www.w3.org/ns/prov#wasGeneratedBy
+prov:wasGeneratedBy rdf:type owl:ObjectProperty .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasCompletionDate
+dpp:hasCompletionDate rdf:type owl:DatatypeProperty ;
+                      rdfs:domain dpp:element ;
+                      rdfs:range xsd:dateTime ;
+                      rdfs:comment "Date and time of element installation completion."@en ;
+                      rdfs:label "has completion date"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasCountryOrigin
+dpp:hasCountryOrigin rdf:type owl:DatatypeProperty ;
+                     rdfs:domain [ rdf:type owl:Class ;
+                                   owl:unionOf ( dpp:origin
+                                                 dpp:rawMaterial
+                                               )
+                                 ] ;
+                     rdfs:range xsd:string ;
+                     rdfs:comment "ISO 3166 country code for origin location."@en ;
+                     rdfs:label "has country origin"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasCriticality
+dpp:hasCriticality rdf:type owl:DatatypeProperty ;
+                   rdfs:domain dpp:material ;
+                   rdfs:range xsd:string ;
+                   rdfs:comment "Material criticality indicator (e.g., 'critical', 'strategic', 'common')."@en ;
+                   rdfs:label "has criticality"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasDecompositionLevel
+dpp:hasDecompositionLevel rdf:type owl:DatatypeProperty ;
+                          rdfs:domain dpp:ClassificationCode ;
+                          rdfs:range xsd:integer ;
+                          rdfs:comment "NEN2767-4 decomposition hierarchy level."@en ;
+                          rdfs:label "has decomposition level"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasDescription
+dpp:hasDescription rdf:type owl:DatatypeProperty ;
+                   rdfs:domain dpp:element ;
+                   rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasGuid
+dpp:hasGuid rdf:type owl:DatatypeProperty ;
+            rdfs:domain dpp:element ;
+            rdfs:range xsd:string ;
+            rdfs:comment "Globally Unique Identifier for the element (IFC GUID format)."@en ;
+            rdfs:label "has GUID"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasLastUpdate
+dpp:hasLastUpdate rdf:type owl:DatatypeProperty ;
+                  rdfs:domain dpp:element ;
+                  rdfs:range xsd:dateTime ;
+                  rdfs:comment "Timestamp of last data update."@en ;
+                  rdfs:label "has last update"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasLimeBinderType
+dpp:hasLimeBinderType rdf:type owl:DatatypeProperty ;
+                      rdfs:domain dpp:HempcreteComposite ;
+                      rdfs:range xsd:string ;
+                      rdfs:comment "Type of lime binder used (e.g., 'Hydraulic Lime', 'Air Lime', 'NHL 3.5')."@en ;
+                      rdfs:label "has lime binder type"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasLinkDatabase
+dpp:hasLinkDatabase rdf:type owl:DatatypeProperty ;
+                    rdfs:domain dpp:element ;
+                    rdfs:range xsd:anyURI ;
+                    rdfs:comment "URI link to external database with additional element data."@en ;
+                    rdfs:label "has link database"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasManufacturerNumber
+dpp:hasManufacturerNumber rdf:type owl:DatatypeProperty ;
+                          rdfs:domain dpp:product ;
+                          rdfs:range xsd:string ;
+                          rdfs:comment "Manufacturer SKU or product number."@en ;
+                          rdfs:label "has manufacturer number"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasMixRatio
+dpp:hasMixRatio rdf:type owl:DatatypeProperty ;
+                rdfs:domain dpp:HempcreteComposite ;
+                rdfs:range xsd:string ;
+                rdfs:comment "Hemp:Lime:Water ratio (e.g., '1:2:3' by volume or weight)."@en ;
+                rdfs:label "has mix ratio"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasName
+dpp:hasName rdf:type owl:DatatypeProperty ;
+            rdfs:domain dpp:element ;
+            rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasProofAvailable
+dpp:hasProofAvailable rdf:type owl:DatatypeProperty ;
+                      rdfs:domain dpp:proofOfReuse ;
+                      rdfs:range xsd:boolean ;
+                      rdfs:comment "Boolean indicating if reuse proof documentation is available."@en ;
+                      rdfs:label "has proof available"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#hasVersion
+dpp:hasVersion rdf:type owl:DatatypeProperty ;
+               rdfs:domain dpp:element ;
+               rdfs:range xsd:string ;
+               rdfs:comment "Version identifier for the element data."@en ;
+               rdfs:label "has version"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://ontorion.com/namespace#BiobaseProduct
+bio:BiobaseProduct rdf:type owl:Class ;
+                   owl:equivalentClass dpp:product .
+
+
+###  http://ontorion.com/namespace#Building
+bio:Building rdf:type owl:Class .
+
+
+###  http://ontorion.com/namespace#Crop
+bio:Crop rdf:type owl:Class .
+
+
+###  http://ontorion.com/namespace#Hemp
+bio:Hemp rdf:type owl:Class .
+
+
+###  http://ontorion.com/namespace#Material
+bio:Material rdf:type owl:Class ;
+             owl:equivalentClass dpp:element ,
+                                 dpp:material .
+
+
+###  http://ontorion.com/namespace#NaturalResource
+bio:NaturalResource rdf:type owl:Class ;
+                    owl:equivalentClass dpp:rawMaterial .
+
+
+###  http://qudt.org/schema/qudt/QuantityValue
+qudt:QuantityValue rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#ClassificationCode
+dpp:ClassificationCode rdf:type owl:Class ;
+                       rdfs:comment "Classification code following NEN2767-4 or NL-SfB systems."@en ;
+                       rdfs:label "Classification Code"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#HempFiber
+dpp:HempFiber rdf:type owl:Class ;
+              rdfs:subClassOf bio:Crop ,
+                              bio:Hemp ,
+                              dpp:rawMaterial ;
+              rdfs:comment "Hemp plant fibers used as primary aggregate in hempcrete."@en ;
+              rdfs:label "Hemp Fiber"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#HempcreteComposite
+dpp:HempcreteComposite rdf:type owl:Class ;
+                       rdfs:subClassOf bio:BiobaseProduct ,
+                                       bio:Material ,
+                                       dpp:material ;
+                       rdfs:comment "Composite material made of hemp shiv and lime binder. Primary material for hempcrete construction."@en ;
+                       rdfs:label "Hempcrete Composite"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#HempcretePanel
+dpp:HempcretePanel rdf:type owl:Class ;
+                   rdfs:subClassOf bio:BiobaseProduct ,
+                                   dpp:product ;
+                   rdfs:comment "Prefabricated hempcrete panel product."@en ;
+                   rdfs:label "Hempcrete Panel"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#HempcreteWall
+dpp:HempcreteWall rdf:type owl:Class ;
+                  rdfs:subClassOf dpp:element ,
+                                  bot:Element ;
+                  rdfs:comment "Wall element constructed from hempcrete composite material."@en ;
+                  rdfs:label "Hempcrete Wall"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#LimeBinder
+dpp:LimeBinder rdf:type owl:Class ;
+               rdfs:subClassOf bio:NaturalResource ,
+                               dpp:rawMaterial ;
+               rdfs:comment "Lime-based binder (hydraulic or air lime) used in hempcrete."@en ;
+               rdfs:label "Lime Binder"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#circularityPropertySet
+dpp:circularityPropertySet rdf:type owl:Class ;
+                           rdfs:comment "Container for circularity metrics including reusability, recyclability, disassembly potential, etc. DPP-specific concept."@en ;
+                           rdfs:label "Circularity Property Set"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#conditionAssessment
+dpp:conditionAssessment rdf:type owl:Class ;
+                        rdfs:comment "Assessment of element's current condition. Used for lifecycle tracking."@en ;
+                        rdfs:label "Condition Assessment"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#disassemblyPotential
+dpp:disassemblyPotential rdf:type owl:Class ;
+                         rdfs:comment "Measure of how easily an element can be disassembled for reuse or recycling. Value typically 0-1 scale."@en ;
+                         rdfs:label "Disassembly Potential"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#element
+dpp:element rdf:type owl:Class ;
+            rdfs:subClassOf bot:Element ;
+            rdfs:comment "A building element with circularity tracking. Equivalent to BOT Element and Bio-Material Material. Core class for DPP system."@en ;
+            rdfs:label "Element"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#externalParty
+dpp:externalParty rdf:type owl:Class ;
+                  rdfs:subClassOf prov:Agent ;
+                  rdfs:comment "External party stakeholder (supplier, contractor, certifier). Aligned with PROV-O Agent."@en ;
+                  rdfs:label "External Party"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#futureFuncion
+dpp:futureFuncion rdf:type owl:Class ;
+                  rdfs:comment "Potential future function or use scenario for the element after its current lifecycle."@en ;
+                  rdfs:label "Future Function"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#log
+dpp:log rdf:type owl:Class ;
+        rdfs:subClassOf prov:Activity ;
+        rdfs:comment "Event log tracking element lifecycle events. Aligned with PROV-O Activity."@en ;
+        rdfs:label "Log"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#material
+dpp:material rdf:type owl:Class ;
+             rdfs:comment "A material substance used in construction. Maps to Bio-Material Material class."@en ;
+             rdfs:label "Material"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#origin
+dpp:origin rdf:type owl:Class ;
+           rdfs:comment "Geographic or supply chain origin information."@en ;
+           rdfs:label "Origin"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#owner
+dpp:owner rdf:type owl:Class ;
+          rdfs:subClassOf prov:Agent ;
+          rdfs:comment "Owner stakeholder. Aligned with PROV-O Agent."@en ;
+          rdfs:label "Owner"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#product
+dpp:product rdf:type owl:Class ;
+            rdfs:subClassOf dpp:element ,
+                            bot:Element ;
+            rdfs:comment "A manufactured product that becomes a building element upon installation. Equivalent to Bio-Material BiobaseProduct."@en ;
+            rdfs:label "Product"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#proofOfReuse
+dpp:proofOfReuse rdf:type owl:Class ;
+                 rdfs:comment "Documentation or evidence proving reuse capability or history."@en ;
+                 rdfs:label "Proof of Reuse"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#rawMaterial
+dpp:rawMaterial rdf:type owl:Class ;
+                rdfs:comment "Raw material source before processing. Equivalent to Bio-Material NaturalResource."@en ;
+                rdfs:label "Raw Material"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#recyclingPotential
+dpp:recyclingPotential rdf:type owl:Class ;
+                       rdfs:comment "Measure of recyclability potential. Value typically 0-1 scale or percentage."@en ;
+                       rdfs:label "Recycling Potential"@en .
+
+
+###  http://www.semanticweb.org/janneke.bosma/DPP#reusabilityPotential
+dpp:reusabilityPotential rdf:type owl:Class ;
+                         rdfs:comment "Measure of reusability potential. Value typically 0-1 scale or percentage."@en ;
+                         rdfs:label "Reusability Potential"@en .
+
+
+###  http://www.w3.org/ns/prov#Activity
+prov:Activity rdf:type owl:Class .
+
+
+###  http://www.w3.org/ns/prov#Agent
+prov:Agent rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://ontorion.com/namespace#Limestone
+bio:Limestone rdf:type owl:NamedIndividual .
+
+
+###  https://github.com/catalinacadena-boop/DPP_Hempcrete_Repostory/ontology/DPPnetworkConstructionLog_001
+<https://github.com/catalinacadena-boop/DPP_Hempcrete_Repostory/ontology/DPPnetworkConstructionLog_001> rdf:type owl:NamedIndividual ,
+                                                                                                                 dpp:log ,
+                                                                                                                 prov:Activity ;
+                                                                                                        rdfs:comment "Installation log for exterior hempcrete wall construction."@en ;
+                                                                                                        rdfs:label "Construction Log - Wall 001"@en ;
+                                                                                                        prov:endedAtTime "2024-06-15T10:30:00"^^xsd:dateTime ;
+                                                                                                        prov:startedAtTime "2024-06-10T08:00:00"^^xsd:dateTime ;
+                                                                                                        prov:wasAssociatedWith <https://github.com/catalinacadena-boop/DPP_Hempcrete_Repostory/ontology/DPPnetworkInstaller_Brussels> .
+
+
+###  https://github.com/catalinacadena-boop/DPP_Hempcrete_Repostory/ontology/DPPnetworkDisassemblyAssessment_001
+<https://github.com/catalinacadena-boop/DPP_Hempcrete_Repostory/ontology/DPPnetworkDisassemblyAssessment_001> rdf:type owl:NamedIndividual ,
+                                                                                                                       dpp:disassemblyPotential ;
+                                                                                                              dpp:hasDisassemblyPotentialValue [ rdf:type qudt:QuantityValue ;
+                                                                                                                                                 qudt:numericValue 0.85 ;
+                                                                                                                                                 rdfs:comment "85% easy disassembly - mechanical connections, no toxic adhesives"
+                                                                                                                                               ] ;
+                                                                                                              rdfs:label "Disassembly Assessment"@en .
+
+
+###  https://github.com/catalinacadena-boop/DPP_Hempcrete_Repostory/ontology/DPPnetworkGreenBuildingCorp
+<https://github.com/catalinacadena-boop/DPP_Hempcrete_Repostory/ontology/DPPnetworkGreenBuildingCorp> rdf:type owl:NamedIndividual ,
+                                                                                                               dpp:owner ,
+                                                                                                               prov:Agent ;
+                                                                                                      rdfs:comment "Owner and developer of sustainable construction projects."@en ;
+                                                                                                      rdfs:label "Green Building Corporation"@en .
+
+
+###  https://github.com/catalinacadena-boop/DPP_Hempcrete_Repostory/ontology/DPPnetworkGroundFloor
+<https://github.com/catalinacadena-boop/DPP_Hempcrete_Repostory/ontology/DPPnetworkGroundFloor> rdf:type owl:NamedIndividual ,
+                                                                                                         bot:Storey ;
+                                                                                                bot:hasSpace <https://github.com/catalinacadena-boop/DPP_Hempcrete_Repostory/ontology/DPPnetworkLivingRoom> ;
+                                                                                                rdfs:label "Ground Floor"@en .
+
+
+###  https://github.com/catalinacadena-boop/DPP_Hempcrete_Repostory/ontology/DPPnetworkHempcreteMix_Standard
+<https://github.com/catalinacadena-boop/DPP_Hempcrete_Repostory/ontology/DPPnetworkHempcreteMix_Standard> rdf:type owl:NamedIndividual ,
+                                                                                                                   bio:BiobaseProduct ,
+                                                                                                                   bio:Material ,
+                                                                                                                   dpp:HempcreteComposite ,
+                                                                                                                   dpp:material ;
+                                                                                                          bio:isProducedFrom <https://github.com/catalinacadena-boop/DPP_Hempcrete_Repostory/ontology/DPPnetworkHydraulicLime_NHL35> ,
+                                                                                                                             <https://github.com/catalinacadena-boop/DPP_Hempcrete_Repostory/ontology/DPPnetworkIndustrialHemp_Belgian> ;
+                                                                                                          dpp:hasBiobasedContent [ rdf:type qudt:QuantityValue ;
+                                                                                                                                   qudt:numericValue 0.87
+                                                                                                                                 ] ;
+                                                                                                          dpp:hasCompressiveStrength [ rdf:type qudt:QuantityValue ;
+                                                                                                                                       qudt:numericValue 0.6 ;
+                                                                                                                                       qudt:unit unit:MegaPA
+                                                                                                                                     ] ;
+                                                                                                          dpp:hasDensity [ rdf:type qudt:QuantityValue ;
+                                                                                                                           qudt:numericValue 450 ;
+                                                                                                                           qudt:unit unit:KiloGM-PER-M3
+                                                                                                                         ] ;
+                                                                                                          dpp:hasHempContent [ rdf:type qudt:QuantityValue ;
+                                                                                                                               qudt:numericValue 0.45
+                                                                                                                             ] ;
+                                                                                                          dpp:hasPorosity [ rdf:type qudt:QuantityValue ;
+                                                                                                                            qudt:numericValue 0.62
+                                                                                                                          ] ;
+                                                                                                          dpp:hasRawMaterial <https://github.com/catalinacadena-boop/DPP_Hempcrete_Repostory/ontology/DPPnetworkHydraulicLime_NHL35> ,
+                                                                                                                             <https://github.com/catalinacadena-boop/DPP_Hempcrete_Repostory/ontology/DPPnetworkIndustrialHemp_Belgian> ;
+                                                                                                          dpp:hasSpecificHeat [ rdf:type qudt:QuantityValue ;
+                                                                                                                                qudt:numericValue 1500 ;
+                                                                                                                                qudt:unit unit:J-PER-KiloGM-K
+                                                                                                                              ] ;
+                                                                                                          dpp:hasThermalConductivity [ rdf:type qudt:QuantityValue ;
+                                                                                                                                       qudt:numericValue 0.08 ;
+                                                                                                                                       qudt:unit unit:W-PER-M-K
+                                                                                                                                     ] ;
+                                                                                                          dpp:hasLimeBinderType "NHL 3.5 Hydraulic Lime" ;
+                                                                                                          dpp:hasMixRatio "1:2:2.5" ;
+                                                                                                          bio:hasApplication bio:Construction ;
+                                                                                                          rdfs:comment "Standard hempcrete mix with 45% hemp shiv, 42% hydraulic lime, 13% water by weight. 87% bio-based content."@en ;
+                                                                                                          rdfs:label "Standard Hempcrete Mix"@en .
+
+
+###  https://github.com/catalinacadena-boop/DPP_Hempcrete_Repostory/ontology/DPPnetworkHempcreteSupplier_BE
+<https://github.com/catalinacadena-boop/DPP_Hempcrete_Repostory/ontology/DPPnetworkHempcreteSupplier_BE> rdf:type owl:NamedIndividual ,
+                                                                                                                  dpp:externalParty ,
+                                                                                                                  prov:Agent ;
+                                                                                                         rdfs:comment "Primary supplier of hempcrete materials in Belgium."@en ;
+                                                                                                         rdfs:label "Hempcrete Supplier Belgium"@en .
+
+
+###  https://github.com/catalinacadena-boop/DPP_Hempcrete_Repostory/ontology/DPPnetworkHempcreteWall_Exterior_001
+<https://github.com/catalinacadena-boop/DPP_Hempcrete_Repostory/ontology/DPPnetworkHempcreteWall_Exterior_001> rdf:type owl:NamedIndividual ,
+                                                                                                                        dpp:HempcreteWall ,
+                                                                                                                        dpp:element ,
+                                                                                                                        bot:Element ;
+                                                                                                               dpp:hasCarbonStorage [ rdf:type qudt:QuantityValue ;
+                                                                                                                                      qudt:numericValue 133.0 ;
+                                                                                                                                      qudt:unit unit:KiloGM-CO2 ;
+                                                                                                                                      rdfs:comment "Calculated as 3.78 m³ × 35.2 kg CO2/m³"
+                                                                                                                                    ] ;
+                                                                                                               dpp:hasCost [ rdf:type qudt:QuantityValue ;
+                                                                                                                             qudt:numericValue 2850.00 ;
+                                                                                                                             qudt:unit unit:Euro
+                                                                                                                           ] ;
+                                                                                                               dpp:hasDisassemblyPotential <https://github.com/catalinacadena-boop/DPP_Hempcrete_Repostory/ontology/DPPnetworkDisassemblyAssessment_001> ;
+                                                                                                               dpp:hasEmbodiedEnergy [ rdf:type qudt:QuantityValue ;
+                                                                                                                                       qudt:numericValue 756 ;
+                                                                                                                                       qudt:unit unit:MegaJ
+                                                                                                                                     ] ;
+                                                                                                               dpp:hasExternalParty <https://github.com/catalinacadena-boop/DPP_Hempcrete_Repostory/ontology/DPPnetworkHempcreteSupplier_BE> ,
+                                                                                                                                    <https://github.com/catalinacadena-boop/DPP_Hempcrete_Repostory/ontology/DPPnetworkInstaller_Brussels> ;
+                                                                                                               dpp:hasFireRating [ rdf:type qudt:QuantityValue ;
+                                                                                                                                   qudt:numericValue 90 ;
+                                                                                                                                   qudt:unit unit:MIN
+                                                                                                                                 ] ;
+                                                                                                               dpp:hasGlobalWarmingPotential [ rdf:type qudt:QuantityValue ;
+                                                                                                                                               qudt:numericValue -108.5 ;
+                                                                                                                                               qudt:unit unit:KiloGM-CO2eq ;
+                                                                                                                                               rdfs:comment "Negative value indicates net carbon sequestration"
+                                                                                                                                             ] ;
+                                                                                                               dpp:hasHeight [ rdf:type qudt:QuantityValue ;
+                                                                                                                               qudt:numericValue 2.8 ;
+                                                                                                                               qudt:unit unit:M
+                                                                                                                             ] ;
+                                                                                                               dpp:hasLength [ rdf:type qudt:QuantityValue ;
+                                                                                                                               qudt:numericValue 0.30 ;
+                                                                                                                               qudt:unit unit:M
+                                                                                                                             ] ;
+                                                                                                               dpp:hasLog <https://github.com/catalinacadena-boop/DPP_Hempcrete_Repostory/ontology/DPPnetworkConstructionLog_001> ;
+                                                                                                               dpp:hasMaterial <https://github.com/catalinacadena-boop/DPP_Hempcrete_Repostory/ontology/DPPnetworkHempcreteMix_Standard> ;
+                                                                                                               dpp:hasOrigin <https://github.com/catalinacadena-boop/DPP_Hempcrete_Repostory/ontology/DPPnetworkSupplyChain_Belgium> ;
+                                                                                                               dpp:hasOwner <https://github.com/catalinacadena-boop/DPP_Hempcrete_Repostory/ontology/DPPnetworkGreenBuildingCorp> ;
+                                                                                                               dpp:hasRecyclingPotential <https://github.com/catalinacadena-boop/DPP_Hempcrete_Repostory/ontology/DPPnetworkRecyclingAssessment_001> ;
+                                                                                                               dpp:hasReusabilityPotential <https://github.com/catalinacadena-boop/DPP_Hempcrete_Repostory/ontology/DPPnetworkReusabilityAssessment_001> ;
+                                                                                                               dpp:hasServicelife [ rdf:type qudt:QuantityValue ;
+                                                                                                                                    qudt:numericValue 100 ;
+                                                                                                                                    qudt:unit unit:YR
+                                                                                                                                  ] ;
+                                                                                                               dpp:hasVolume [ rdf:type qudt:QuantityValue ;
+                                                                                                                               qudt:numericValue 3.78 ;
+                                                                                                                               qudt:unit unit:M3
+                                                                                                                             ] ;
+                                                                                                               dpp:hasWarranty [ rdf:type qudt:QuantityValue ;
+                                                                                                                                 qudt:numericValue 10 ;
+                                                                                                                                 qudt:unit unit:YR
+                                                                                                                               ] ;
+                                                                                                               dpp:hasWidth [ rdf:type qudt:QuantityValue ;
+                                                                                                                              qudt:numericValue 4.5 ;
+                                                                                                                              qudt:unit unit:M
+                                                                                                                            ] ;
+                                                                                                               bot:adjacentElement <https://github.com/catalinacadena-boop/DPP_Hempcrete_Repostory/ontology/DPPnetworkInteriorPartition_002> ;
+                                                                                                               bot:hasSpace <https://github.com/catalinacadena-boop/DPP_Hempcrete_Repostory/ontology/DPPnetworkLivingRoom> ;
+                                                                                                               dpp:hasCompletionDate "2024-06-15T10:30:00"^^xsd:dateTime ;
+                                                                                                               dpp:hasDescription "Load-bearing exterior wall made from hempcrete composite, south-facing orientation with high thermal mass." ;
+                                                                                                               dpp:hasGuid "3cF8d9e2-4b7a-11ec-81d3-0242ac130003" ;
+                                                                                                               dpp:hasLastUpdate "2025-12-03T14:20:00"^^xsd:dateTime ;
+                                                                                                               dpp:hasName "Exterior Hempcrete Wall - Living Room" ;
+                                                                                                               dpp:hasVersion "1.2" ;
+                                                                                                               rdfs:comment "Exterior load-bearing hempcrete wall with excellent thermal performance and carbon sequestration capabilities. Full 4-way ontology integration demonstrating DPP+BOT+Bio-Material+QUDT."@en ;
+                                                                                                               rdfs:label "Exterior Hempcrete Wall - Living Room"@en .
+
+
+###  https://github.com/catalinacadena-boop/DPP_Hempcrete_Repostory/ontology/DPPnetworkHydraulicLime_NHL35
+<https://github.com/catalinacadena-boop/DPP_Hempcrete_Repostory/ontology/DPPnetworkHydraulicLime_NHL35> rdf:type owl:NamedIndividual ,
+                                                                                                                 bio:NaturalResource ,
+                                                                                                                 dpp:LimeBinder ,
+                                                                                                                 dpp:rawMaterial ;
+                                                                                                        bio:isProducedFrom bio:Limestone ;
+                                                                                                        dpp:hasCountryOrigin "FR" ;
+                                                                                                        rdfs:comment "Natural hydraulic lime NHL 3.5 from France."@en ;
+                                                                                                        rdfs:label "NHL 3.5 Hydraulic Lime"@en .
+
+
+###  https://github.com/catalinacadena-boop/DPP_Hempcrete_Repostory/ontology/DPPnetworkIndustrialHemp_Belgian
+<https://github.com/catalinacadena-boop/DPP_Hempcrete_Repostory/ontology/DPPnetworkIndustrialHemp_Belgian> rdf:type owl:NamedIndividual ,
+                                                                                                                    bio:Crop ,
+                                                                                                                    bio:Hemp ,
+                                                                                                                    bio:NaturalResource ,
+                                                                                                                    dpp:HempFiber ,
+                                                                                                                    dpp:rawMaterial ;
+                                                                                                           dpp:hasCountryOrigin "BE" ;
+                                                                                                           bio:hasPartIn bio:Bioeconomy ;
+                                                                                                           bio:isCultivatedBy bio:OrganicFarming ;
+                                                                                                           rdfs:comment "Organically cultivated industrial hemp (Cannabis sativa) from Belgium."@en ;
+                                                                                                           rdfs:label "Belgian Industrial Hemp"@en .
+
+
+###  https://github.com/catalinacadena-boop/DPP_Hempcrete_Repostory/ontology/DPPnetworkInstaller_Brussels
+<https://github.com/catalinacadena-boop/DPP_Hempcrete_Repostory/ontology/DPPnetworkInstaller_Brussels> rdf:type owl:NamedIndividual ,
+                                                                                                                dpp:externalParty ,
+                                                                                                                prov:Agent ;
+                                                                                                       rdfs:comment "Certified hempcrete installation contractor."@en ;
+                                                                                                       rdfs:label "Brussels Hempcrete Installers"@en .
+
+
+###  https://github.com/catalinacadena-boop/DPP_Hempcrete_Repostory/ontology/DPPnetworkInteriorPartition_002
+<https://github.com/catalinacadena-boop/DPP_Hempcrete_Repostory/ontology/DPPnetworkInteriorPartition_002> rdf:type owl:NamedIndividual .
+
+
+###  https://github.com/catalinacadena-boop/DPP_Hempcrete_Repostory/ontology/DPPnetworkLivingRoom
+<https://github.com/catalinacadena-boop/DPP_Hempcrete_Repostory/ontology/DPPnetworkLivingRoom> rdf:type owl:NamedIndividual ,
+                                                                                                        bot:Space ;
+                                                                                               bot:containsElement <https://github.com/catalinacadena-boop/DPP_Hempcrete_Repostory/ontology/DPPnetworkHempcreteWall_Exterior_001> ;
+                                                                                               rdfs:comment "Main living room space on ground floor."@en ;
+                                                                                               rdfs:label "Living Room"@en .
+
+
+###  https://github.com/catalinacadena-boop/DPP_Hempcrete_Repostory/ontology/DPPnetworkRecyclingAssessment_001
+<https://github.com/catalinacadena-boop/DPP_Hempcrete_Repostory/ontology/DPPnetworkRecyclingAssessment_001> rdf:type owl:NamedIndividual ,
+                                                                                                                     dpp:recyclingPotential ;
+                                                                                                            dpp:hasRecyclingPotentialValue [ rdf:type qudt:QuantityValue ;
+                                                                                                                                             qudt:numericValue 1.0 ;
+                                                                                                                                             rdfs:comment "100% recyclable - all components are natural and biodegradable"
+                                                                                                                                           ] ;
+                                                                                                            rdfs:label "Recycling Assessment"@en .
+
+
+###  https://github.com/catalinacadena-boop/DPP_Hempcrete_Repostory/ontology/DPPnetworkReusabilityAssessment_001
+<https://github.com/catalinacadena-boop/DPP_Hempcrete_Repostory/ontology/DPPnetworkReusabilityAssessment_001> rdf:type owl:NamedIndividual ,
+                                                                                                                       dpp:reusabilityPotential ;
+                                                                                                              dpp:hasReusabilityPotentialValue [ rdf:type qudt:QuantityValue ;
+                                                                                                                                                 qudt:numericValue 0.95 ;
+                                                                                                                                                 rdfs:comment "95% reusable - hempcrete can be crushed and re-mixed with new binder"
+                                                                                                                                               ] ;
+                                                                                                              rdfs:label "Reusability Assessment"@en .
+
+
+###  https://github.com/catalinacadena-boop/DPP_Hempcrete_Repostory/ontology/DPPnetworkSupplyChain_Belgium
+<https://github.com/catalinacadena-boop/DPP_Hempcrete_Repostory/ontology/DPPnetworkSupplyChain_Belgium> rdf:type owl:NamedIndividual ,
+                                                                                                                 dpp:origin ;
+                                                                                                        dpp:hasCountryOrigin "BE" ;
+                                                                                                        rdfs:comment "Materials sourced from Belgian and French suppliers within 200km radius."@en ;
+                                                                                                        rdfs:label "Belgian Supply Chain"@en .
+
+
+###  https://github.com/catalinacadena-boop/DPP_Hempcrete_Repostory/ontology/DPPnetworkSustainableHouse_Brussels
+<https://github.com/catalinacadena-boop/DPP_Hempcrete_Repostory/ontology/DPPnetworkSustainableHouse_Brussels> rdf:type owl:NamedIndividual ,
+                                                                                                                       bio:Building ,
+                                                                                                                       bot:Building ;
+                                                                                                              bot:hasStorey <https://github.com/catalinacadena-boop/DPP_Hempcrete_Repostory/ontology/DPPnetworkGroundFloor> ;
+                                                                                                              bot:hasZeroPoint [ rdf:type qudt:QuantityValue ;
+                                                                                                                                 geo:lat 50.8503 ;
+                                                                                                                                 geo:long 4.3517
+                                                                                                                               ] ;
+                                                                                                              rdfs:comment "Demonstration sustainable house built with hempcrete in Brussels, Belgium."@en ;
+                                                                                                              rdfs:label "Sustainable House Brussels"@en .
+
+
+#################################################################
+#    Annotations
+#################################################################
+
+dpp:hasDescription rdfs:comment "Textual description of the element."@en ;
+                   rdfs:label "has description"@en .
+
+
+dpp:hasName rdfs:comment "Human-readable name of the element."@en ;
+            rdfs:label "has name"@en .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi

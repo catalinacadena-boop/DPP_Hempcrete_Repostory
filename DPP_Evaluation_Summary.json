@@ -1,0 +1,1308 @@
+{
+  "report_date": "2025-12-04T15:39:03.157985",
+  "overall_score": 0.8153510612418658,
+  "component_scores": {
+    "visualization": 0.7920238095238096,
+    "ttl": 0.825,
+    "dataset": 0.829029374201788
+  },
+  "persona_scores": {
+    "Owner / Production Manager (General Manager/ Brand Manager)": 0.8157434774676154,
+    "Sustainability assessor (Sustainability and Certification Manager)": 0.832410144134282,
+    "Technical Architect (Project Architect)": 0.8358492975734355,
+    "Design architect (Design Architect)": 0.7774013257921304
+  },
+  "heuristic_scores": {
+    "H1: Clarity of Information": 0.8333333333333334,
+    "H2: Information Relevance": 0.923015873015873,
+    "H3: Consistency of Structure and Data": 0.8833333333333333,
+    "H4: Accessibility of Key Information": 0.7166666666666667,
+    "H5: Completeness of Material Data": 0.9226436781609196,
+    "H6: Transparency of Data Sources": 0.6333333333333333,
+    "H7: Alignment with Circularity Requirements": 0.9166666666666666,
+    "H8: Compatibility with Digital Workflows": 0.75,
+    "H9: User-Centred Orientation": 0.7591666666666667
+  },
+  "detailed_results": [
+    {
+      "persona": "Owner / Production Manager (General Manager/ Brand Manager)",
+      "heuristic": "H1: Clarity of Information",
+      "component": "visualization",
+      "score": 0.85,
+      "compliance_level": "excellent",
+      "findings": [
+        "\u2713 Clear tabbed navigation (General Info, Lifecycle, Technical Info, etc.)",
+        "\u2713 Readable parameter labels and values",
+        "\u2713 Units clearly displayed next to values",
+        "\u26a0 Some technical terms lack inline definitions (e.g., \u03bc, CTUh)"
+      ]
+    },
+    {
+      "persona": "Owner / Production Manager (General Manager/ Brand Manager)",
+      "heuristic": "H1: Clarity of Information",
+      "component": "ttl",
+      "score": 0.8,
+      "compliance_level": "good",
+      "findings": [
+        "Uses 35 standard namespaces",
+        "\u2713 Clear property naming with prefixes (dpp:, schema1:, qudt:)",
+        "\u26a0 Some URIs are lengthy and complex"
+      ]
+    },
+    {
+      "persona": "Owner / Production Manager (General Manager/ Brand Manager)",
+      "heuristic": "H1: Clarity of Information",
+      "component": "dataset",
+      "score": 0.85,
+      "compliance_level": "excellent",
+      "findings": [
+        "\u2713 Clear parameter naming convention (prefix_category_parameter)",
+        "\u2713 Units specified for each parameter",
+        "\u2713 Ranges provided for context",
+        "Total parameters: 116"
+      ]
+    },
+    {
+      "persona": "Owner / Production Manager (General Manager/ Brand Manager)",
+      "heuristic": "H2: Information Relevance",
+      "component": "visualization",
+      "score": 0.8571428571428571,
+      "compliance_level": "excellent",
+      "findings": [
+        "Visualization covers 6/7 major information categories for Owner / Production Manager"
+      ]
+    },
+    {
+      "persona": "Owner / Production Manager (General Manager/ Brand Manager)",
+      "heuristic": "H2: Information Relevance",
+      "component": "ttl",
+      "score": 1.0,
+      "compliance_level": "excellent",
+      "findings": [
+        "140 unique properties defined",
+        "\u2713 Covers technical, environmental, and circularity aspects"
+      ]
+    },
+    {
+      "persona": "Owner / Production Manager (General Manager/ Brand Manager)",
+      "heuristic": "H2: Information Relevance",
+      "component": "dataset",
+      "score": 1.0,
+      "compliance_level": "excellent",
+      "findings": [
+        "50 parameters relevant to Owner / Production Manager",
+        "Organized in 11 categories"
+      ]
+    },
+    {
+      "persona": "Owner / Production Manager (General Manager/ Brand Manager)",
+      "heuristic": "H3: Consistency of Structure and Data",
+      "component": "visualization",
+      "score": 0.9,
+      "compliance_level": "excellent",
+      "findings": [
+        "\u2713 Consistent layout across tabs",
+        "\u2713 Uniform color coding (blue for sections)",
+        "\u2713 Standardized data presentation format"
+      ]
+    },
+    {
+      "persona": "Owner / Production Manager (General Manager/ Brand Manager)",
+      "heuristic": "H3: Consistency of Structure and Data",
+      "component": "ttl",
+      "score": 0.85,
+      "compliance_level": "excellent",
+      "findings": [
+        "\u2713 Consistent use of owl:equivalentProperty mappings",
+        "\u2713 Structured property sets (circularityPropertySet)",
+        "\u2713 13 distinct class types"
+      ]
+    },
+    {
+      "persona": "Owner / Production Manager (General Manager/ Brand Manager)",
+      "heuristic": "H3: Consistency of Structure and Data",
+      "component": "dataset",
+      "score": 0.9,
+      "compliance_level": "excellent",
+      "findings": [
+        "\u2713 Consistent naming convention across all parameters",
+        "\u2713 Standardized data format (tab-separated)",
+        "\u2713 11 logical category groupings"
+      ]
+    },
+    {
+      "persona": "Owner / Production Manager (General Manager/ Brand Manager)",
+      "heuristic": "H4: Accessibility of Key Information",
+      "component": "visualization",
+      "score": 0.75,
+      "compliance_level": "good",
+      "findings": [
+        "\u2713 Logical information hierarchy with tabs",
+        "\u2713 Key info (ID, manufacturer) prominently displayed",
+        "\u26a0 Deep nesting in some sections may hinder quick access",
+        "\u26a0 No visible search functionality"
+      ]
+    },
+    {
+      "persona": "Owner / Production Manager (General Manager/ Brand Manager)",
+      "heuristic": "H4: Accessibility of Key Information",
+      "component": "ttl",
+      "score": 0.65,
+      "compliance_level": "fair",
+      "findings": [
+        "\u2713 Standard RDF/Turtle format",
+        "\u26a0 Requires SPARQL knowledge to query effectively",
+        "Total triples: 1444"
+      ]
+    },
+    {
+      "persona": "Owner / Production Manager (General Manager/ Brand Manager)",
+      "heuristic": "H4: Accessibility of Key Information",
+      "component": "dataset",
+      "score": 0.75,
+      "compliance_level": "good",
+      "findings": [
+        "\u2713 Simple text format, easily opened in any spreadsheet tool",
+        "\u2713 Clear column headers (Parameter, Data, Unit, Range)",
+        "\u26a0 Requires manual search to find specific parameters"
+      ]
+    },
+    {
+      "persona": "Owner / Production Manager (General Manager/ Brand Manager)",
+      "heuristic": "H5: Completeness of Material Data",
+      "component": "visualization",
+      "score": 0.88,
+      "compliance_level": "excellent",
+      "findings": [
+        "\u2713 Comprehensive lifecycle data (origin, manufacturing, use, end-of-life)",
+        "\u2713 Environmental impact visualization (GWP breakdown chart)",
+        "\u2713 Technical properties well-covered",
+        "\u26a0 Validation shows 1 missing value (98.8% complete)"
+      ]
+    },
+    {
+      "persona": "Owner / Production Manager (General Manager/ Brand Manager)",
+      "heuristic": "H5: Completeness of Material Data",
+      "component": "ttl",
+      "score": 1.0,
+      "compliance_level": "excellent",
+      "findings": [
+        "Data completeness: 100%",
+        "Multiple product instances: 9"
+      ]
+    },
+    {
+      "persona": "Owner / Production Manager (General Manager/ Brand Manager)",
+      "heuristic": "H5: Completeness of Material Data",
+      "component": "dataset",
+      "score": 0.8879310344827587,
+      "compliance_level": "excellent",
+      "findings": [
+        "Completeness: 88.8%",
+        "Filled parameters: 103/116",
+        "Parameters with units: 65",
+        "Parameters with ranges: 89"
+      ]
+    },
+    {
+      "persona": "Owner / Production Manager (General Manager/ Brand Manager)",
+      "heuristic": "H6: Transparency of Data Sources",
+      "component": "visualization",
+      "score": 0.7,
+      "compliance_level": "good",
+      "findings": [
+        "\u2713 Data source cited: 'Manufacturer EPD'",
+        "\u2713 Last updated date shown: 15/5/2024",
+        "\u2713 EPD link available in Resources tab",
+        "\u26a0 Individual parameter sources not specified"
+      ]
+    },
+    {
+      "persona": "Owner / Production Manager (General Manager/ Brand Manager)",
+      "heuristic": "H6: Transparency of Data Sources",
+      "component": "ttl",
+      "score": 0.7,
+      "compliance_level": "good",
+      "findings": [
+        "\u2713 Includes prov: namespace for provenance",
+        "\u2713 dcterms: for metadata",
+        "\u26a0 Data source attribution could be more explicit"
+      ]
+    },
+    {
+      "persona": "Owner / Production Manager (General Manager/ Brand Manager)",
+      "heuristic": "H6: Transparency of Data Sources",
+      "component": "dataset",
+      "score": 0.5,
+      "compliance_level": "fair",
+      "findings": [
+        "\u26a0 No explicit data source column",
+        "\u26a0 No timestamp or version information",
+        "\u2713 Ranges provide validation context"
+      ]
+    },
+    {
+      "persona": "Owner / Production Manager (General Manager/ Brand Manager)",
+      "heuristic": "H7: Alignment with Circularity Requirements",
+      "component": "visualization",
+      "score": 0.85,
+      "compliance_level": "excellent",
+      "findings": [
+        "\u2713 Dedicated circularity profile visualization (radar chart)",
+        "\u2713 End-of-life recommendations clearly stated",
+        "\u2713 Disassembly instructions included",
+        "\u2713 Secondary use scenarios described"
+      ]
+    },
+    {
+      "persona": "Owner / Production Manager (General Manager/ Brand Manager)",
+      "heuristic": "H7: Alignment with Circularity Requirements",
+      "component": "ttl",
+      "score": 0.9,
+      "compliance_level": "excellent",
+      "findings": [
+        "\u2713 Dedicated circularityPropertySet class",
+        "\u2713 Multiple circularity instances defined"
+      ]
+    },
+    {
+      "persona": "Owner / Production Manager (General Manager/ Brand Manager)",
+      "heuristic": "H7: Alignment with Circularity Requirements",
+      "component": "dataset",
+      "score": 1.0,
+      "compliance_level": "excellent",
+      "findings": [
+        "\u2713 15 dedicated circularity parameters",
+        "\u2713 Includes disassembly, reusability, recycling metrics"
+      ]
+    },
+    {
+      "persona": "Owner / Production Manager (General Manager/ Brand Manager)",
+      "heuristic": "H8: Compatibility with Digital Workflows",
+      "component": "visualization",
+      "score": 0.6,
+      "compliance_level": "fair",
+      "findings": [
+        "\u2713 Download options for TTL and IFC files",
+        "\u26a0 Downloads marked as 'N/A' in current state",
+        "\u26a0 No direct API access visible"
+      ]
+    },
+    {
+      "persona": "Owner / Production Manager (General Manager/ Brand Manager)",
+      "heuristic": "H8: Compatibility with Digital Workflows",
+      "component": "ttl",
+      "score": 0.95,
+      "compliance_level": "excellent",
+      "findings": [
+        "\u2713 Uses widely-adopted ontologies (BOT, BPO, Schema.org)",
+        "\u2713 QUDT for units and quantities",
+        "\u2713 RDF format enables SPARQL queries",
+        "\u2713 Semantic web standards compliance"
+      ]
+    },
+    {
+      "persona": "Owner / Production Manager (General Manager/ Brand Manager)",
+      "heuristic": "H8: Compatibility with Digital Workflows",
+      "component": "dataset",
+      "score": 0.7,
+      "compliance_level": "good",
+      "findings": [
+        "\u2713 Tab-separated format, easy to import",
+        "\u2713 Can be converted to CSV, JSON, or database",
+        "\u26a0 Not directly machine-readable (requires parsing)"
+      ]
+    },
+    {
+      "persona": "Owner / Production Manager (General Manager/ Brand Manager)",
+      "heuristic": "H9: User-Centred Orientation",
+      "component": "visualization",
+      "score": 0.8,
+      "compliance_level": "good",
+      "findings": [
+        "Interface alignment with Owner / Production Manager needs: 80%",
+        "\u2713 Cost information readily available",
+        "\u2713 Summary metrics for client communication"
+      ]
+    },
+    {
+      "persona": "Owner / Production Manager (General Manager/ Brand Manager)",
+      "heuristic": "H9: User-Centred Orientation",
+      "component": "ttl",
+      "score": 0.4,
+      "compliance_level": "poor",
+      "findings": [
+        "\u26a0 Requires technical expertise to use"
+      ]
+    },
+    {
+      "persona": "Owner / Production Manager (General Manager/ Brand Manager)",
+      "heuristic": "H9: User-Centred Orientation",
+      "component": "dataset",
+      "score": 1.0,
+      "compliance_level": "excellent",
+      "findings": [
+        "27 parameters align with Owner / Production Manager data needs"
+      ]
+    },
+    {
+      "persona": "Sustainability assessor (Sustainability and Certification Manager)",
+      "heuristic": "H1: Clarity of Information",
+      "component": "visualization",
+      "score": 0.85,
+      "compliance_level": "excellent",
+      "findings": [
+        "\u2713 Clear tabbed navigation (General Info, Lifecycle, Technical Info, etc.)",
+        "\u2713 Readable parameter labels and values",
+        "\u2713 Units clearly displayed next to values",
+        "\u26a0 Some technical terms lack inline definitions (e.g., \u03bc, CTUh)"
+      ]
+    },
+    {
+      "persona": "Sustainability assessor (Sustainability and Certification Manager)",
+      "heuristic": "H1: Clarity of Information",
+      "component": "ttl",
+      "score": 0.8,
+      "compliance_level": "good",
+      "findings": [
+        "Uses 35 standard namespaces",
+        "\u2713 Clear property naming with prefixes (dpp:, schema1:, qudt:)",
+        "\u26a0 Some URIs are lengthy and complex"
+      ]
+    },
+    {
+      "persona": "Sustainability assessor (Sustainability and Certification Manager)",
+      "heuristic": "H1: Clarity of Information",
+      "component": "dataset",
+      "score": 0.85,
+      "compliance_level": "excellent",
+      "findings": [
+        "\u2713 Clear parameter naming convention (prefix_category_parameter)",
+        "\u2713 Units specified for each parameter",
+        "\u2713 Ranges provided for context",
+        "Total parameters: 116"
+      ]
+    },
+    {
+      "persona": "Sustainability assessor (Sustainability and Certification Manager)",
+      "heuristic": "H2: Information Relevance",
+      "component": "visualization",
+      "score": 0.8571428571428571,
+      "compliance_level": "excellent",
+      "findings": [
+        "Visualization covers 6/7 major information categories for Sustainability assessor"
+      ]
+    },
+    {
+      "persona": "Sustainability assessor (Sustainability and Certification Manager)",
+      "heuristic": "H2: Information Relevance",
+      "component": "ttl",
+      "score": 1.0,
+      "compliance_level": "excellent",
+      "findings": [
+        "140 unique properties defined",
+        "\u2713 Covers technical, environmental, and circularity aspects"
+      ]
+    },
+    {
+      "persona": "Sustainability assessor (Sustainability and Certification Manager)",
+      "heuristic": "H2: Information Relevance",
+      "component": "dataset",
+      "score": 1.0,
+      "compliance_level": "excellent",
+      "findings": [
+        "41 parameters relevant to Sustainability assessor",
+        "Organized in 11 categories"
+      ]
+    },
+    {
+      "persona": "Sustainability assessor (Sustainability and Certification Manager)",
+      "heuristic": "H3: Consistency of Structure and Data",
+      "component": "visualization",
+      "score": 0.9,
+      "compliance_level": "excellent",
+      "findings": [
+        "\u2713 Consistent layout across tabs",
+        "\u2713 Uniform color coding (blue for sections)",
+        "\u2713 Standardized data presentation format"
+      ]
+    },
+    {
+      "persona": "Sustainability assessor (Sustainability and Certification Manager)",
+      "heuristic": "H3: Consistency of Structure and Data",
+      "component": "ttl",
+      "score": 0.85,
+      "compliance_level": "excellent",
+      "findings": [
+        "\u2713 Consistent use of owl:equivalentProperty mappings",
+        "\u2713 Structured property sets (circularityPropertySet)",
+        "\u2713 13 distinct class types"
+      ]
+    },
+    {
+      "persona": "Sustainability assessor (Sustainability and Certification Manager)",
+      "heuristic": "H3: Consistency of Structure and Data",
+      "component": "dataset",
+      "score": 0.9,
+      "compliance_level": "excellent",
+      "findings": [
+        "\u2713 Consistent naming convention across all parameters",
+        "\u2713 Standardized data format (tab-separated)",
+        "\u2713 11 logical category groupings"
+      ]
+    },
+    {
+      "persona": "Sustainability assessor (Sustainability and Certification Manager)",
+      "heuristic": "H4: Accessibility of Key Information",
+      "component": "visualization",
+      "score": 0.75,
+      "compliance_level": "good",
+      "findings": [
+        "\u2713 Logical information hierarchy with tabs",
+        "\u2713 Key info (ID, manufacturer) prominently displayed",
+        "\u26a0 Deep nesting in some sections may hinder quick access",
+        "\u26a0 No visible search functionality"
+      ]
+    },
+    {
+      "persona": "Sustainability assessor (Sustainability and Certification Manager)",
+      "heuristic": "H4: Accessibility of Key Information",
+      "component": "ttl",
+      "score": 0.65,
+      "compliance_level": "fair",
+      "findings": [
+        "\u2713 Standard RDF/Turtle format",
+        "\u26a0 Requires SPARQL knowledge to query effectively",
+        "Total triples: 1444"
+      ]
+    },
+    {
+      "persona": "Sustainability assessor (Sustainability and Certification Manager)",
+      "heuristic": "H4: Accessibility of Key Information",
+      "component": "dataset",
+      "score": 0.75,
+      "compliance_level": "good",
+      "findings": [
+        "\u2713 Simple text format, easily opened in any spreadsheet tool",
+        "\u2713 Clear column headers (Parameter, Data, Unit, Range)",
+        "\u26a0 Requires manual search to find specific parameters"
+      ]
+    },
+    {
+      "persona": "Sustainability assessor (Sustainability and Certification Manager)",
+      "heuristic": "H5: Completeness of Material Data",
+      "component": "visualization",
+      "score": 0.88,
+      "compliance_level": "excellent",
+      "findings": [
+        "\u2713 Comprehensive lifecycle data (origin, manufacturing, use, end-of-life)",
+        "\u2713 Environmental impact visualization (GWP breakdown chart)",
+        "\u2713 Technical properties well-covered",
+        "\u26a0 Validation shows 1 missing value (98.8% complete)"
+      ]
+    },
+    {
+      "persona": "Sustainability assessor (Sustainability and Certification Manager)",
+      "heuristic": "H5: Completeness of Material Data",
+      "component": "ttl",
+      "score": 1.0,
+      "compliance_level": "excellent",
+      "findings": [
+        "Data completeness: 100%",
+        "Multiple product instances: 9"
+      ]
+    },
+    {
+      "persona": "Sustainability assessor (Sustainability and Certification Manager)",
+      "heuristic": "H5: Completeness of Material Data",
+      "component": "dataset",
+      "score": 0.8879310344827587,
+      "compliance_level": "excellent",
+      "findings": [
+        "Completeness: 88.8%",
+        "Filled parameters: 103/116",
+        "Parameters with units: 65",
+        "Parameters with ranges: 89"
+      ]
+    },
+    {
+      "persona": "Sustainability assessor (Sustainability and Certification Manager)",
+      "heuristic": "H6: Transparency of Data Sources",
+      "component": "visualization",
+      "score": 0.7,
+      "compliance_level": "good",
+      "findings": [
+        "\u2713 Data source cited: 'Manufacturer EPD'",
+        "\u2713 Last updated date shown: 15/5/2024",
+        "\u2713 EPD link available in Resources tab",
+        "\u26a0 Individual parameter sources not specified"
+      ]
+    },
+    {
+      "persona": "Sustainability assessor (Sustainability and Certification Manager)",
+      "heuristic": "H6: Transparency of Data Sources",
+      "component": "ttl",
+      "score": 0.7,
+      "compliance_level": "good",
+      "findings": [
+        "\u2713 Includes prov: namespace for provenance",
+        "\u2713 dcterms: for metadata",
+        "\u26a0 Data source attribution could be more explicit"
+      ]
+    },
+    {
+      "persona": "Sustainability assessor (Sustainability and Certification Manager)",
+      "heuristic": "H6: Transparency of Data Sources",
+      "component": "dataset",
+      "score": 0.5,
+      "compliance_level": "fair",
+      "findings": [
+        "\u26a0 No explicit data source column",
+        "\u26a0 No timestamp or version information",
+        "\u2713 Ranges provide validation context"
+      ]
+    },
+    {
+      "persona": "Sustainability assessor (Sustainability and Certification Manager)",
+      "heuristic": "H7: Alignment with Circularity Requirements",
+      "component": "visualization",
+      "score": 0.85,
+      "compliance_level": "excellent",
+      "findings": [
+        "\u2713 Dedicated circularity profile visualization (radar chart)",
+        "\u2713 End-of-life recommendations clearly stated",
+        "\u2713 Disassembly instructions included",
+        "\u2713 Secondary use scenarios described"
+      ]
+    },
+    {
+      "persona": "Sustainability assessor (Sustainability and Certification Manager)",
+      "heuristic": "H7: Alignment with Circularity Requirements",
+      "component": "ttl",
+      "score": 0.9,
+      "compliance_level": "excellent",
+      "findings": [
+        "\u2713 Dedicated circularityPropertySet class",
+        "\u2713 Multiple circularity instances defined"
+      ]
+    },
+    {
+      "persona": "Sustainability assessor (Sustainability and Certification Manager)",
+      "heuristic": "H7: Alignment with Circularity Requirements",
+      "component": "dataset",
+      "score": 1.0,
+      "compliance_level": "excellent",
+      "findings": [
+        "\u2713 15 dedicated circularity parameters",
+        "\u2713 Includes disassembly, reusability, recycling metrics"
+      ]
+    },
+    {
+      "persona": "Sustainability assessor (Sustainability and Certification Manager)",
+      "heuristic": "H8: Compatibility with Digital Workflows",
+      "component": "visualization",
+      "score": 0.6,
+      "compliance_level": "fair",
+      "findings": [
+        "\u2713 Download options for TTL and IFC files",
+        "\u26a0 Downloads marked as 'N/A' in current state",
+        "\u26a0 No direct API access visible"
+      ]
+    },
+    {
+      "persona": "Sustainability assessor (Sustainability and Certification Manager)",
+      "heuristic": "H8: Compatibility with Digital Workflows",
+      "component": "ttl",
+      "score": 0.95,
+      "compliance_level": "excellent",
+      "findings": [
+        "\u2713 Uses widely-adopted ontologies (BOT, BPO, Schema.org)",
+        "\u2713 QUDT for units and quantities",
+        "\u2713 RDF format enables SPARQL queries",
+        "\u2713 Semantic web standards compliance"
+      ]
+    },
+    {
+      "persona": "Sustainability assessor (Sustainability and Certification Manager)",
+      "heuristic": "H8: Compatibility with Digital Workflows",
+      "component": "dataset",
+      "score": 0.7,
+      "compliance_level": "good",
+      "findings": [
+        "\u2713 Tab-separated format, easy to import",
+        "\u2713 Can be converted to CSV, JSON, or database",
+        "\u26a0 Not directly machine-readable (requires parsing)"
+      ]
+    },
+    {
+      "persona": "Sustainability assessor (Sustainability and Certification Manager)",
+      "heuristic": "H9: User-Centred Orientation",
+      "component": "visualization",
+      "score": 0.9,
+      "compliance_level": "excellent",
+      "findings": [
+        "Interface alignment with Sustainability assessor needs: 90%"
+      ]
+    },
+    {
+      "persona": "Sustainability assessor (Sustainability and Certification Manager)",
+      "heuristic": "H9: User-Centred Orientation",
+      "component": "ttl",
+      "score": 0.75,
+      "compliance_level": "good",
+      "findings": [
+        "\u2713 Suitable for BIM integration workflows"
+      ]
+    },
+    {
+      "persona": "Sustainability assessor (Sustainability and Certification Manager)",
+      "heuristic": "H9: User-Centred Orientation",
+      "component": "dataset",
+      "score": 1.0,
+      "compliance_level": "excellent",
+      "findings": [
+        "27 parameters align with Sustainability assessor data needs"
+      ]
+    },
+    {
+      "persona": "Technical Architect (Project Architect)",
+      "heuristic": "H1: Clarity of Information",
+      "component": "visualization",
+      "score": 0.85,
+      "compliance_level": "excellent",
+      "findings": [
+        "\u2713 Clear tabbed navigation (General Info, Lifecycle, Technical Info, etc.)",
+        "\u2713 Readable parameter labels and values",
+        "\u2713 Units clearly displayed next to values",
+        "\u26a0 Some technical terms lack inline definitions (e.g., \u03bc, CTUh)"
+      ]
+    },
+    {
+      "persona": "Technical Architect (Project Architect)",
+      "heuristic": "H1: Clarity of Information",
+      "component": "ttl",
+      "score": 0.8,
+      "compliance_level": "good",
+      "findings": [
+        "Uses 35 standard namespaces",
+        "\u2713 Clear property naming with prefixes (dpp:, schema1:, qudt:)",
+        "\u26a0 Some URIs are lengthy and complex"
+      ]
+    },
+    {
+      "persona": "Technical Architect (Project Architect)",
+      "heuristic": "H1: Clarity of Information",
+      "component": "dataset",
+      "score": 0.85,
+      "compliance_level": "excellent",
+      "findings": [
+        "\u2713 Clear parameter naming convention (prefix_category_parameter)",
+        "\u2713 Units specified for each parameter",
+        "\u2713 Ranges provided for context",
+        "Total parameters: 116"
+      ]
+    },
+    {
+      "persona": "Technical Architect (Project Architect)",
+      "heuristic": "H2: Information Relevance",
+      "component": "visualization",
+      "score": 1.0,
+      "compliance_level": "excellent",
+      "findings": [
+        "Visualization covers 7/7 major information categories for Technical Architect"
+      ]
+    },
+    {
+      "persona": "Technical Architect (Project Architect)",
+      "heuristic": "H2: Information Relevance",
+      "component": "ttl",
+      "score": 1.0,
+      "compliance_level": "excellent",
+      "findings": [
+        "140 unique properties defined",
+        "\u2713 Covers technical, environmental, and circularity aspects"
+      ]
+    },
+    {
+      "persona": "Technical Architect (Project Architect)",
+      "heuristic": "H2: Information Relevance",
+      "component": "dataset",
+      "score": 1.0,
+      "compliance_level": "excellent",
+      "findings": [
+        "50 parameters relevant to Technical Architect",
+        "Organized in 11 categories"
+      ]
+    },
+    {
+      "persona": "Technical Architect (Project Architect)",
+      "heuristic": "H3: Consistency of Structure and Data",
+      "component": "visualization",
+      "score": 0.9,
+      "compliance_level": "excellent",
+      "findings": [
+        "\u2713 Consistent layout across tabs",
+        "\u2713 Uniform color coding (blue for sections)",
+        "\u2713 Standardized data presentation format"
+      ]
+    },
+    {
+      "persona": "Technical Architect (Project Architect)",
+      "heuristic": "H3: Consistency of Structure and Data",
+      "component": "ttl",
+      "score": 0.85,
+      "compliance_level": "excellent",
+      "findings": [
+        "\u2713 Consistent use of owl:equivalentProperty mappings",
+        "\u2713 Structured property sets (circularityPropertySet)",
+        "\u2713 13 distinct class types"
+      ]
+    },
+    {
+      "persona": "Technical Architect (Project Architect)",
+      "heuristic": "H3: Consistency of Structure and Data",
+      "component": "dataset",
+      "score": 0.9,
+      "compliance_level": "excellent",
+      "findings": [
+        "\u2713 Consistent naming convention across all parameters",
+        "\u2713 Standardized data format (tab-separated)",
+        "\u2713 11 logical category groupings"
+      ]
+    },
+    {
+      "persona": "Technical Architect (Project Architect)",
+      "heuristic": "H4: Accessibility of Key Information",
+      "component": "visualization",
+      "score": 0.75,
+      "compliance_level": "good",
+      "findings": [
+        "\u2713 Logical information hierarchy with tabs",
+        "\u2713 Key info (ID, manufacturer) prominently displayed",
+        "\u26a0 Deep nesting in some sections may hinder quick access",
+        "\u26a0 No visible search functionality"
+      ]
+    },
+    {
+      "persona": "Technical Architect (Project Architect)",
+      "heuristic": "H4: Accessibility of Key Information",
+      "component": "ttl",
+      "score": 0.65,
+      "compliance_level": "fair",
+      "findings": [
+        "\u2713 Standard RDF/Turtle format",
+        "\u26a0 Requires SPARQL knowledge to query effectively",
+        "Total triples: 1444"
+      ]
+    },
+    {
+      "persona": "Technical Architect (Project Architect)",
+      "heuristic": "H4: Accessibility of Key Information",
+      "component": "dataset",
+      "score": 0.75,
+      "compliance_level": "good",
+      "findings": [
+        "\u2713 Simple text format, easily opened in any spreadsheet tool",
+        "\u2713 Clear column headers (Parameter, Data, Unit, Range)",
+        "\u26a0 Requires manual search to find specific parameters"
+      ]
+    },
+    {
+      "persona": "Technical Architect (Project Architect)",
+      "heuristic": "H5: Completeness of Material Data",
+      "component": "visualization",
+      "score": 0.88,
+      "compliance_level": "excellent",
+      "findings": [
+        "\u2713 Comprehensive lifecycle data (origin, manufacturing, use, end-of-life)",
+        "\u2713 Environmental impact visualization (GWP breakdown chart)",
+        "\u2713 Technical properties well-covered",
+        "\u26a0 Validation shows 1 missing value (98.8% complete)"
+      ]
+    },
+    {
+      "persona": "Technical Architect (Project Architect)",
+      "heuristic": "H5: Completeness of Material Data",
+      "component": "ttl",
+      "score": 1.0,
+      "compliance_level": "excellent",
+      "findings": [
+        "Data completeness: 100%",
+        "Multiple product instances: 9"
+      ]
+    },
+    {
+      "persona": "Technical Architect (Project Architect)",
+      "heuristic": "H5: Completeness of Material Data",
+      "component": "dataset",
+      "score": 0.8879310344827587,
+      "compliance_level": "excellent",
+      "findings": [
+        "Completeness: 88.8%",
+        "Filled parameters: 103/116",
+        "Parameters with units: 65",
+        "Parameters with ranges: 89"
+      ]
+    },
+    {
+      "persona": "Technical Architect (Project Architect)",
+      "heuristic": "H6: Transparency of Data Sources",
+      "component": "visualization",
+      "score": 0.7,
+      "compliance_level": "good",
+      "findings": [
+        "\u2713 Data source cited: 'Manufacturer EPD'",
+        "\u2713 Last updated date shown: 15/5/2024",
+        "\u2713 EPD link available in Resources tab",
+        "\u26a0 Individual parameter sources not specified"
+      ]
+    },
+    {
+      "persona": "Technical Architect (Project Architect)",
+      "heuristic": "H6: Transparency of Data Sources",
+      "component": "ttl",
+      "score": 0.7,
+      "compliance_level": "good",
+      "findings": [
+        "\u2713 Includes prov: namespace for provenance",
+        "\u2713 dcterms: for metadata",
+        "\u26a0 Data source attribution could be more explicit"
+      ]
+    },
+    {
+      "persona": "Technical Architect (Project Architect)",
+      "heuristic": "H6: Transparency of Data Sources",
+      "component": "dataset",
+      "score": 0.5,
+      "compliance_level": "fair",
+      "findings": [
+        "\u26a0 No explicit data source column",
+        "\u26a0 No timestamp or version information",
+        "\u2713 Ranges provide validation context"
+      ]
+    },
+    {
+      "persona": "Technical Architect (Project Architect)",
+      "heuristic": "H7: Alignment with Circularity Requirements",
+      "component": "visualization",
+      "score": 0.85,
+      "compliance_level": "excellent",
+      "findings": [
+        "\u2713 Dedicated circularity profile visualization (radar chart)",
+        "\u2713 End-of-life recommendations clearly stated",
+        "\u2713 Disassembly instructions included",
+        "\u2713 Secondary use scenarios described"
+      ]
+    },
+    {
+      "persona": "Technical Architect (Project Architect)",
+      "heuristic": "H7: Alignment with Circularity Requirements",
+      "component": "ttl",
+      "score": 0.9,
+      "compliance_level": "excellent",
+      "findings": [
+        "\u2713 Dedicated circularityPropertySet class",
+        "\u2713 Multiple circularity instances defined"
+      ]
+    },
+    {
+      "persona": "Technical Architect (Project Architect)",
+      "heuristic": "H7: Alignment with Circularity Requirements",
+      "component": "dataset",
+      "score": 1.0,
+      "compliance_level": "excellent",
+      "findings": [
+        "\u2713 15 dedicated circularity parameters",
+        "\u2713 Includes disassembly, reusability, recycling metrics"
+      ]
+    },
+    {
+      "persona": "Technical Architect (Project Architect)",
+      "heuristic": "H8: Compatibility with Digital Workflows",
+      "component": "visualization",
+      "score": 0.6,
+      "compliance_level": "fair",
+      "findings": [
+        "\u2713 Download options for TTL and IFC files",
+        "\u26a0 Downloads marked as 'N/A' in current state",
+        "\u26a0 No direct API access visible"
+      ]
+    },
+    {
+      "persona": "Technical Architect (Project Architect)",
+      "heuristic": "H8: Compatibility with Digital Workflows",
+      "component": "ttl",
+      "score": 0.95,
+      "compliance_level": "excellent",
+      "findings": [
+        "\u2713 Uses widely-adopted ontologies (BOT, BPO, Schema.org)",
+        "\u2713 QUDT for units and quantities",
+        "\u2713 RDF format enables SPARQL queries",
+        "\u2713 Semantic web standards compliance"
+      ]
+    },
+    {
+      "persona": "Technical Architect (Project Architect)",
+      "heuristic": "H8: Compatibility with Digital Workflows",
+      "component": "dataset",
+      "score": 0.7,
+      "compliance_level": "good",
+      "findings": [
+        "\u2713 Tab-separated format, easy to import",
+        "\u2713 Can be converted to CSV, JSON, or database",
+        "\u26a0 Not directly machine-readable (requires parsing)"
+      ]
+    },
+    {
+      "persona": "Technical Architect (Project Architect)",
+      "heuristic": "H9: User-Centred Orientation",
+      "component": "visualization",
+      "score": 0.85,
+      "compliance_level": "excellent",
+      "findings": [
+        "Interface alignment with Technical Architect needs: 85%",
+        "\u2713 Technical specifications well-organized",
+        "\u2713 Environmental data accessible for LCA"
+      ]
+    },
+    {
+      "persona": "Technical Architect (Project Architect)",
+      "heuristic": "H9: User-Centred Orientation",
+      "component": "ttl",
+      "score": 0.75,
+      "compliance_level": "good",
+      "findings": [
+        "\u2713 Suitable for BIM integration workflows"
+      ]
+    },
+    {
+      "persona": "Technical Architect (Project Architect)",
+      "heuristic": "H9: User-Centred Orientation",
+      "component": "dataset",
+      "score": 1.0,
+      "compliance_level": "excellent",
+      "findings": [
+        "27 parameters align with Technical Architect data needs"
+      ]
+    },
+    {
+      "persona": "Design architect (Design Architect)",
+      "heuristic": "H1: Clarity of Information",
+      "component": "visualization",
+      "score": 0.85,
+      "compliance_level": "excellent",
+      "findings": [
+        "\u2713 Clear tabbed navigation (General Info, Lifecycle, Technical Info, etc.)",
+        "\u2713 Readable parameter labels and values",
+        "\u2713 Units clearly displayed next to values",
+        "\u26a0 Some technical terms lack inline definitions (e.g., \u03bc, CTUh)"
+      ]
+    },
+    {
+      "persona": "Design architect (Design Architect)",
+      "heuristic": "H1: Clarity of Information",
+      "component": "ttl",
+      "score": 0.8,
+      "compliance_level": "good",
+      "findings": [
+        "Uses 35 standard namespaces",
+        "\u2713 Clear property naming with prefixes (dpp:, schema1:, qudt:)",
+        "\u26a0 Some URIs are lengthy and complex"
+      ]
+    },
+    {
+      "persona": "Design architect (Design Architect)",
+      "heuristic": "H1: Clarity of Information",
+      "component": "dataset",
+      "score": 0.85,
+      "compliance_level": "excellent",
+      "findings": [
+        "\u2713 Clear parameter naming convention (prefix_category_parameter)",
+        "\u2713 Units specified for each parameter",
+        "\u2713 Ranges provided for context",
+        "Total parameters: 116"
+      ]
+    },
+    {
+      "persona": "Design architect (Design Architect)",
+      "heuristic": "H2: Information Relevance",
+      "component": "visualization",
+      "score": 0.42857142857142855,
+      "compliance_level": "poor",
+      "findings": [
+        "Visualization covers 3/7 major information categories for Design architect"
+      ]
+    },
+    {
+      "persona": "Design architect (Design Architect)",
+      "heuristic": "H2: Information Relevance",
+      "component": "ttl",
+      "score": 1.0,
+      "compliance_level": "excellent",
+      "findings": [
+        "140 unique properties defined",
+        "\u2713 Covers technical, environmental, and circularity aspects"
+      ]
+    },
+    {
+      "persona": "Design architect (Design Architect)",
+      "heuristic": "H2: Information Relevance",
+      "component": "dataset",
+      "score": 0.9333333333333333,
+      "compliance_level": "excellent",
+      "findings": [
+        "28 parameters relevant to Design architect",
+        "Organized in 11 categories"
+      ]
+    },
+    {
+      "persona": "Design architect (Design Architect)",
+      "heuristic": "H3: Consistency of Structure and Data",
+      "component": "visualization",
+      "score": 0.9,
+      "compliance_level": "excellent",
+      "findings": [
+        "\u2713 Consistent layout across tabs",
+        "\u2713 Uniform color coding (blue for sections)",
+        "\u2713 Standardized data presentation format"
+      ]
+    },
+    {
+      "persona": "Design architect (Design Architect)",
+      "heuristic": "H3: Consistency of Structure and Data",
+      "component": "ttl",
+      "score": 0.85,
+      "compliance_level": "excellent",
+      "findings": [
+        "\u2713 Consistent use of owl:equivalentProperty mappings",
+        "\u2713 Structured property sets (circularityPropertySet)",
+        "\u2713 13 distinct class types"
+      ]
+    },
+    {
+      "persona": "Design architect (Design Architect)",
+      "heuristic": "H3: Consistency of Structure and Data",
+      "component": "dataset",
+      "score": 0.9,
+      "compliance_level": "excellent",
+      "findings": [
+        "\u2713 Consistent naming convention across all parameters",
+        "\u2713 Standardized data format (tab-separated)",
+        "\u2713 11 logical category groupings"
+      ]
+    },
+    {
+      "persona": "Design architect (Design Architect)",
+      "heuristic": "H4: Accessibility of Key Information",
+      "component": "visualization",
+      "score": 0.75,
+      "compliance_level": "good",
+      "findings": [
+        "\u2713 Logical information hierarchy with tabs",
+        "\u2713 Key info (ID, manufacturer) prominently displayed",
+        "\u26a0 Deep nesting in some sections may hinder quick access",
+        "\u26a0 No visible search functionality"
+      ]
+    },
+    {
+      "persona": "Design architect (Design Architect)",
+      "heuristic": "H4: Accessibility of Key Information",
+      "component": "ttl",
+      "score": 0.65,
+      "compliance_level": "fair",
+      "findings": [
+        "\u2713 Standard RDF/Turtle format",
+        "\u26a0 Requires SPARQL knowledge to query effectively",
+        "Total triples: 1444"
+      ]
+    },
+    {
+      "persona": "Design architect (Design Architect)",
+      "heuristic": "H4: Accessibility of Key Information",
+      "component": "dataset",
+      "score": 0.75,
+      "compliance_level": "good",
+      "findings": [
+        "\u2713 Simple text format, easily opened in any spreadsheet tool",
+        "\u2713 Clear column headers (Parameter, Data, Unit, Range)",
+        "\u26a0 Requires manual search to find specific parameters"
+      ]
+    },
+    {
+      "persona": "Design architect (Design Architect)",
+      "heuristic": "H5: Completeness of Material Data",
+      "component": "visualization",
+      "score": 0.88,
+      "compliance_level": "excellent",
+      "findings": [
+        "\u2713 Comprehensive lifecycle data (origin, manufacturing, use, end-of-life)",
+        "\u2713 Environmental impact visualization (GWP breakdown chart)",
+        "\u2713 Technical properties well-covered",
+        "\u26a0 Validation shows 1 missing value (98.8% complete)"
+      ]
+    },
+    {
+      "persona": "Design architect (Design Architect)",
+      "heuristic": "H5: Completeness of Material Data",
+      "component": "ttl",
+      "score": 1.0,
+      "compliance_level": "excellent",
+      "findings": [
+        "Data completeness: 100%",
+        "Multiple product instances: 9"
+      ]
+    },
+    {
+      "persona": "Design architect (Design Architect)",
+      "heuristic": "H5: Completeness of Material Data",
+      "component": "dataset",
+      "score": 0.8879310344827587,
+      "compliance_level": "excellent",
+      "findings": [
+        "Completeness: 88.8%",
+        "Filled parameters: 103/116",
+        "Parameters with units: 65",
+        "Parameters with ranges: 89"
+      ]
+    },
+    {
+      "persona": "Design architect (Design Architect)",
+      "heuristic": "H6: Transparency of Data Sources",
+      "component": "visualization",
+      "score": 0.7,
+      "compliance_level": "good",
+      "findings": [
+        "\u2713 Data source cited: 'Manufacturer EPD'",
+        "\u2713 Last updated date shown: 15/5/2024",
+        "\u2713 EPD link available in Resources tab",
+        "\u26a0 Individual parameter sources not specified"
+      ]
+    },
+    {
+      "persona": "Design architect (Design Architect)",
+      "heuristic": "H6: Transparency of Data Sources",
+      "component": "ttl",
+      "score": 0.7,
+      "compliance_level": "good",
+      "findings": [
+        "\u2713 Includes prov: namespace for provenance",
+        "\u2713 dcterms: for metadata",
+        "\u26a0 Data source attribution could be more explicit"
+      ]
+    },
+    {
+      "persona": "Design architect (Design Architect)",
+      "heuristic": "H6: Transparency of Data Sources",
+      "component": "dataset",
+      "score": 0.5,
+      "compliance_level": "fair",
+      "findings": [
+        "\u26a0 No explicit data source column",
+        "\u26a0 No timestamp or version information",
+        "\u2713 Ranges provide validation context"
+      ]
+    },
+    {
+      "persona": "Design architect (Design Architect)",
+      "heuristic": "H7: Alignment with Circularity Requirements",
+      "component": "visualization",
+      "score": 0.85,
+      "compliance_level": "excellent",
+      "findings": [
+        "\u2713 Dedicated circularity profile visualization (radar chart)",
+        "\u2713 End-of-life recommendations clearly stated",
+        "\u2713 Disassembly instructions included",
+        "\u2713 Secondary use scenarios described"
+      ]
+    },
+    {
+      "persona": "Design architect (Design Architect)",
+      "heuristic": "H7: Alignment with Circularity Requirements",
+      "component": "ttl",
+      "score": 0.9,
+      "compliance_level": "excellent",
+      "findings": [
+        "\u2713 Dedicated circularityPropertySet class",
+        "\u2713 Multiple circularity instances defined"
+      ]
+    },
+    {
+      "persona": "Design architect (Design Architect)",
+      "heuristic": "H7: Alignment with Circularity Requirements",
+      "component": "dataset",
+      "score": 1.0,
+      "compliance_level": "excellent",
+      "findings": [
+        "\u2713 15 dedicated circularity parameters",
+        "\u2713 Includes disassembly, reusability, recycling metrics"
+      ]
+    },
+    {
+      "persona": "Design architect (Design Architect)",
+      "heuristic": "H8: Compatibility with Digital Workflows",
+      "component": "visualization",
+      "score": 0.6,
+      "compliance_level": "fair",
+      "findings": [
+        "\u2713 Download options for TTL and IFC files",
+        "\u26a0 Downloads marked as 'N/A' in current state",
+        "\u26a0 No direct API access visible"
+      ]
+    },
+    {
+      "persona": "Design architect (Design Architect)",
+      "heuristic": "H8: Compatibility with Digital Workflows",
+      "component": "ttl",
+      "score": 0.95,
+      "compliance_level": "excellent",
+      "findings": [
+        "\u2713 Uses widely-adopted ontologies (BOT, BPO, Schema.org)",
+        "\u2713 QUDT for units and quantities",
+        "\u2713 RDF format enables SPARQL queries",
+        "\u2713 Semantic web standards compliance"
+      ]
+    },
+    {
+      "persona": "Design architect (Design Architect)",
+      "heuristic": "H8: Compatibility with Digital Workflows",
+      "component": "dataset",
+      "score": 0.7,
+      "compliance_level": "good",
+      "findings": [
+        "\u2713 Tab-separated format, easy to import",
+        "\u2713 Can be converted to CSV, JSON, or database",
+        "\u26a0 Not directly machine-readable (requires parsing)"
+      ]
+    },
+    {
+      "persona": "Design architect (Design Architect)",
+      "heuristic": "H9: User-Centred Orientation",
+      "component": "visualization",
+      "score": 0.7,
+      "compliance_level": "good",
+      "findings": [
+        "Interface alignment with Design architect needs: 70%"
+      ]
+    },
+    {
+      "persona": "Design architect (Design Architect)",
+      "heuristic": "H9: User-Centred Orientation",
+      "component": "ttl",
+      "score": 0.4,
+      "compliance_level": "poor",
+      "findings": [
+        "\u26a0 Requires technical expertise to use"
+      ]
+    },
+    {
+      "persona": "Design architect (Design Architect)",
+      "heuristic": "H9: User-Centred Orientation",
+      "component": "dataset",
+      "score": 0.56,
+      "compliance_level": "fair",
+      "findings": [
+        "14 parameters align with Design architect data needs"
+      ]
+    }
+  ]
+}
